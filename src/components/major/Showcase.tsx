@@ -25,7 +25,7 @@ const Showcase = () => {
                     <p className="prose prose-invert mt-4 max-w-xl">
                     Disrupt the competitive landscape with GeekPie AI.
                     Integrate our advanced AI technologies to revolutionize your business approach, leaving 
-                    competitors struggling to keep up. With GeekPie AI, you're not just competing; you're dominating.
+                    competitors struggling to keep up. With GeekPie AI, you&apos;re not just competing; you&apos;re dominating.
                     Setting you apart as a leader.
                     </p>
                     <ButtonLink className="mt-6">
