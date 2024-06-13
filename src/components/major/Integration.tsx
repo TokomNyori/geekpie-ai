@@ -57,7 +57,7 @@ const Integration = () => {
                     Integrations galore.
                 </h1>
                 <p className="mx-auto mt-6 max-w-md text-balance text-slate-300">
-                    The integrations your team needs to be productive at scale with no
+                    The integrations your business needs to be productive at scale with no
                     impact on your burn rate.
                 </p>
                 <IconXAnimations icons={icons} />

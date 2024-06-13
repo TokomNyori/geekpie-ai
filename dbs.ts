@@ -1,30 +1,30 @@
 export const featuresDB = [
     {
         id: 1,
-        title: "Endless Ideation",
-        description: "Come up with new ideas faster than you can open Photoshop",
+        title: "Effortless Interactions",
+        description: "Engage customers seamlessly with GeekPie AI's chatbot, faster than you can imagine.",
         imageSrc: "/images/small-screenshot.png",
         isWide: false,
     },
     {
         id: 2,
-        title: "Benchmark with AI",
-        description: "Never worry about pixel perfection again, thanks to our patented AI critic, telling you when something is misaligned.",
+        title: "Precision Customer Support",
+        description: "Never worry about customer queries again. Our AI chatbot ensures prompt and accurate responses, giving you peace of mind.",
         imageSrc: "/images/long-screenshot.png",
         isWide: true,
     },
     {
         id: 3,
-        title: "Aesthetic Excellence",
-        description: "Our AI can help you make your designs look better than ever before. It's like having a personal designer in your pocket.",
+        title: "Customer Satisfaction Boost",
+        description: "Enhance customer experiences with our AI chatbot, delivering personalized interactions effortlessly.",
         imageSrc: "/images/long-screenshot.png",
         isWide: true,
     },
     {
         id: 4,
-        title: "Pixels Perfected",
-        description: "Our features power your next big design, whether it’s a website or an app.",
+        title: "Efficient support",
+        description: "Empower your customer service with GeekPie AI's chatbot, handling inquiries seamlessly.",
         imageSrc: "/images/small-screenshot.png",
         isWide: false,
     },
-]
+];

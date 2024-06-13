@@ -51,7 +51,7 @@ const Navbar = () => {
 
                     <div className="grid justify-items-end gap-8">
                         <Link
-                            href={`/features`}
+                            href={`#features`}
                             className="block px-3 text-3xl first:mt-10"
                             onClick={() => setOpen(false)}
                         >
@@ -68,7 +68,7 @@ const Navbar = () => {
                 <ul className="hidden gap-6 md:flex">
                     <li>
                         <Link
-                            href={`/features`}
+                            href={`#features`}
                             className="inline-flex min-h-11 items-center"
                         >
                             Features

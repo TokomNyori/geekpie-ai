@@ -16,10 +16,10 @@ const Footer = () => {
             <nav aria-label="Footer">
                 <ul className="flex gap-6">
                     <li>
-                        <Link href={`/features`} className="inline-flex min-h-11 items-center">Features</Link>
+                        <Link href={`#`} className="inline-flex min-h-11 items-center">Features</Link>
                     </li>
                     <li>
-                        <Link href={`/get-started`} className="inline-flex min-h-11 items-center">Get Started</Link>
+                        <Link href={`#`} className="inline-flex min-h-11 items-center">Get Started</Link>
                     </li>
                 </ul>
             </nav>

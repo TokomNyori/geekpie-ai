@@ -10,7 +10,7 @@ const Showcase = () => {
         <Bounded className="relative">
             <div className="glow absolute -z-10 aspect-square w-full max-w-xl rounded-full bg-blue-400/25 blur-3xl filter" />
             <h1 className="text-balance text-center text-4xl font-medium md:text-7xl">
-                Your Glisten. <br />
+                Your Geekpie. <br />
                 Your workflow.
             </h1>
             <div className="mt-16 grid items-center rounded-xl border border-blue-50/20 bg-gradient-to-b 
@@ -20,13 +20,13 @@ const Showcase = () => {
                         <PiGear className="" />
                     </div>
                     <h3 className="mt-6 text-2xl font-normal">
-                        Design the next big thing.
+                    Disrupt the Competition.
                     </h3>
                     <p className="prose prose-invert mt-4 max-w-xl">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.
+                    Disrupt the competitive landscape with GeekPie AI.
+                    Integrate our advanced AI technologies to revolutionize your business approach, leaving 
+                    competitors struggling to keep up. With GeekPie AI, you're not just competing; you're dominating.
+                    Setting you apart as a leader.
                     </p>
                     <ButtonLink className="mt-6">
                         Get Started
