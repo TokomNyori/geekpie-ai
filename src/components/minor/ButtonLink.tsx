@@ -1,14 +1,14 @@
 import clsx from "clsx"
 import Link from "next/link"
-import { Children } from "react"
+import React, { Children } from "react"
 
 type ButtonLinkProps = {
     className?: string
-    children: string
+    children: React.ReactNode
     onClick?: () => void
 }
 
-const ButtonLink = ({ className, ...props }: ButtonLinkProps) => {
+const ButtonLink = ({ children, className, ...props }: ButtonLinkProps) => {
     //console.log(props)
     return (
         <Link
@@ -22,7 +22,7 @@ const ButtonLink = ({ className, ...props }: ButtonLinkProps) => {
             href={`#`}
             onClick={props.onClick}
         >
-            {props.children}
+            {children}
         </Link>
     )
 }

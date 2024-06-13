@@ -11,7 +11,9 @@ const CallToAction = () => {
                 <LogoMark />
             </div>
             <h2 className="mt-8 max-w-xl text-5xl text-balance">AI powered insights for designers</h2>
-            <ButtonLink className="mt-6" children="Start Now" />
+            <ButtonLink className="mt-6" >
+                Start Now
+            </ButtonLink>
         </Bounded>
     );
 };

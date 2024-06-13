@@ -34,7 +34,7 @@ const Navbar = () => {
                         <span className="sr-only">Open Menu</span>
                     </button>
                 </div>
-                
+
                 {/* Mobile Menu */}
                 <div className={clsx(`fixed bottom-0 left-0 right-0 top-0 z-40 flex flex-col items-end gap-4 bg-[#070815] pr-4 pt-14 
                     transition-transform duration-300 ease-in-out motion-reduce:transition-none md:hidden`,
@@ -57,7 +57,9 @@ const Navbar = () => {
                         >
                             Features
                         </Link>
-                        <ButtonLink children="Get Started" onClick={() => setOpen(false)} />
+                        <ButtonLink onClick={() => setOpen(false)}>
+                            Get Started
+                        </ButtonLink>
                     </div>
                 </div>
 
@@ -73,7 +75,9 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <ButtonLink children="Get Started" />
+                        <ButtonLink >
+                            Get Started
+                        </ButtonLink>
                     </li>
                 </ul>
             </div>

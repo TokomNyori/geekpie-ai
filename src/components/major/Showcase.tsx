@@ -28,7 +28,9 @@ const Showcase = () => {
                         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                         aliquip ex ea commodo consequat.
                     </p>
-                    <ButtonLink className="mt-6" children="Get Started" />
+                    <ButtonLink className="mt-6">
+                        Get Started
+                    </ButtonLink>
                 </div>
                 <Image
                     src="/images/showcase-image.png"

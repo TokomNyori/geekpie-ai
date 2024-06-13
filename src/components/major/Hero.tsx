@@ -22,7 +22,9 @@ const Hero = ({ ...props }: HeroProps) => {
                 <p className="mx-auto mt-6 max-w-md text-balance text-slate-300">
                     {props.paragraph}
                 </p>
-                <ButtonLink className="mt-8" children={`${props.buttonText}`} />
+                <ButtonLink className="mt-8">
+                    {props.buttonText}
+                </ButtonLink>
                 <div className="glass-container mt-16 w-fit">
                     <div className="absolute inset-0 -z-10 bg-blue-500/30 blur-2xl filter" />
                     <Image
