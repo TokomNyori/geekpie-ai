@@ -27,9 +27,9 @@
     --rotation: 0deg;
   }
 }
-
+/* 
 @media (max-width: 640px) {
   #star-grid {
     height: 60vh;
   }
-}
+} */
