@@ -12,7 +12,7 @@ export default function Home() {
       <Hero
         heading="Chatbots that radiate with dynamic intelligence."
         paragraph="AI-Powered Chatbots: Disrupt and Capture the Market, Propelling Your Business Forward."
-        buttonText="Download Now"
+        buttonText="Try Now!"
         imageSrc="/images/hero-image.png"
         imageSrcMobile="/images/hero-image-sm.png"
         alt="Hero Image"
