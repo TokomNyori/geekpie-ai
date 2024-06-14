@@ -1,5 +1,5 @@
 "use client";
-import WordMark from "../minor/WordMark";
+import WordMark from "../svg-components/WordMark";
 import Link from "next/link";
 import ButtonLink from "../minor/ButtonLink";
 import LogoMark from "../minor/PlainLogo";

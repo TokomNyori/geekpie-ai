@@ -4,10 +4,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ButtonLink from "../minor/ButtonLink";
 import Image from "next/image";
-import StarGrid from "../minor/StarGrid";
 import { HeroProps } from "../major/Hero";
 import { RiRobot2Line } from "react-icons/ri";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import StarGrid from "../svg-components/StarGrid";
 
 type GsapAnimatedContentProps = {
     props: HeroProps;
@@ -75,7 +75,7 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
     return (
         <div className="relative" ref={container}>
             <StarGrid className="hidden md:block" />
-            <StarGrid viewBox="150 0 405 450" className="block md:hidden" />
+            <StarGrid viewBox="150 0 405 450" staggerFrom="end" className="block md:hidden" />
 
             <h1 className="hero__heading text-balance text-center text-5xl font-medium opacity-0 md:text-7xl">
                 {props.heading}

@@ -4,23 +4,24 @@ import { SiTypescript } from "react-icons/si";
 import { SiAmazonaws } from "react-icons/si";
 import { SiReact } from "react-icons/si";
 import { SiOpenai } from "react-icons/si";
+import { SiTensorflow } from "react-icons/si";
 import GeekPieIcon from "/images/icon.png";
 import Bounded from "../minor/Bounded";
-import StarBackground from "../minor/StarBackground";
+import StarBackground from "../svg-components/StarBackground";
 import Image from "next/image";
-import IconXAnimations from "../minor/IconXAnimations";
+import IconXAnimations from "../animations/IconXAnimations";
 
 const icons = [
     {
-        icon: SiVercel,
+        icon: <SiVercel />,
         type: "IconType",
     },
     {
-        icon: SiAmazonaws,
+        icon: <SiTensorflow />,
         type: "IconType",
     },
     {
-        icon: SiNextdotjs,
+        icon: <SiNextdotjs />,
         type: "IconType",
     },
     {
@@ -28,15 +29,15 @@ const icons = [
         type: "Image",
     },
     {
-        icon: SiReact,
+        icon: <SiReact />,
         type: "IconType",
     },
     {
-        icon: SiTypescript,
+        icon: <SiAmazonaws />,
         type: "IconType",
     },
     {
-        icon: SiOpenai,
+        icon: <SiOpenai />,
         type: "IconType",
     },
 ];
@@ -54,11 +55,11 @@ const Integration = () => {
             <StarBackground />
             <div className="relative">
                 <h1 className="text-balance text-center text-5xl font-medium md:text-7xl">
-                    Integrations galore.
+                    Tech Integration.
                 </h1>
                 <p className="mx-auto mt-6 max-w-md text-balance text-slate-300">
-                    The integrations your business needs to be productive at scale with no
-                    impact on your burn rate.
+                    Leveraging the latest technologies to craft innovative and effective
+                    solutions tailored to your business needs.
                 </p>
                 <IconXAnimations icons={icons} />
             </div>

@@ -1,5 +1,5 @@
 import Bounded from "../minor/Bounded";
-import GsapAnimatedContent from "../minor/GsapAnimatedContent";
+import GsapAnimatedContent from "../animations/GsapAnimatedContent";
 
 export type HeroProps = {
     heading: string;

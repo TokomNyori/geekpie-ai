@@ -1,5 +1,5 @@
 import Navbar from "./Navbar"
-import WordMark from "../minor/WordMark"
+import WordMark from "../svg-components/WordMark"
 
 const Header = () => {
   return (
