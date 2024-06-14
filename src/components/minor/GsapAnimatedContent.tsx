@@ -24,8 +24,10 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
 
     return (
         <div className="relative" ref={container}>
+
             <StarGrid className='hidden md:block' />
-            <StarGrid viewBox='0 0 405 450' className='block md:hidden' />
+            <StarGrid viewBox='150 0 405 450' className='block md:hidden' />
+
             <h1 className="hero__heading text-balance text-center text-5xl font-medium md:text-7xl">
                 {props.heading}
             </h1>
