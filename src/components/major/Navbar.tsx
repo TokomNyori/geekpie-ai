@@ -13,11 +13,11 @@ const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <nav aria-label="Main" className="p-4 md:p-6">
+        <nav aria-label="Main" className="p-4 md:p-4">
             <div className="mx-auto flex max-w-6xl flex-col justify-between py-2 font-medium text-white md:flex-row md:items-center">
                 <div className="flex items-center justify-between">
                     <Link href={"/"} className="flex items-center justify-start gap-3 z-50" onClick={() => setOpen(false)}>
-                        <LogoMark className="w-10" />
+                        <LogoMark className="w-[2.35rem]" />
                         <span className="text-3xl">
                             GeekPie
                             <sup className="ml-1 text-lg italic text-yellow-400">ai</sup>

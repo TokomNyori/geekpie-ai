@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className='flex flex-col items-center justify-between gap-6 border-t border-slate-600 px-8 py-7 md:flex-row'>
             <Link href={"/"} className="flex items-center justify-start gap-3">
-                <LogoMark className="w-10" />
+                <LogoMark className="w-[2.35rem]" />
                 <span className="text-3xl">
                     GeekPie
                     <sup className="ml-1 text-lg italic text-yellow-400">ai</sup>
