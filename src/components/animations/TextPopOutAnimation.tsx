@@ -11,15 +11,15 @@ type TextPopOutAnimationProps = {
 
 const TextPopOutAnimation = ({ children }: TextPopOutAnimationProps) => {
     const container = useRef(null);
-    gsap.registerPlugin(useGSAP, ScrollTrigger);
     const prefersReducedMotion = usePrefersReducedMotion();
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
 
     useGSAP(() => {
         if (prefersReducedMotion) {
             gsap.set(container.current, { y: 0 });
             return;
         }
-        
+
         gsap.fromTo(
             container.current,
             { y: 100 },
@@ -31,7 +31,6 @@ const TextPopOutAnimation = ({ children }: TextPopOutAnimationProps) => {
                     trigger: container.current,
                     start: "top bottom-=40%",
                     toggleActions: "play pause resume reverse",
-                    markers: false,
                 }
             }
         )
