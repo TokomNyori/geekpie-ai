@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="<generated>" />
+        <meta property="og:image" content="/images/GlistenOGImage.png" />
         <meta property="og:image:type" content="<generated>" />
         <meta property="og:image:width" content="<generated>" />
         <meta property="og:image:height" content="<generated>" />
