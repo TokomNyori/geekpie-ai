@@ -24,10 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="<generated>" />
-        <meta property="og:image:type" content="<generated>" />
-        <meta property="og:image:width" content="<generated>" />
-        <meta property="og:image:height" content="<generated>" />
+        <meta property="og:title" content="GeekPie AI" />
+        <meta property="og:description" content="AI-Powered Chatbots: Disrupt and Capture the Market." />
+        <meta property="og:image" content="/images/og.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://geekpieai.vercel.app/" />
+        <meta property="og:type" content="website" />
       </head>
       <body className={`${GeistSans.className} bg-[#070815] text-white`}>
         <Header />
