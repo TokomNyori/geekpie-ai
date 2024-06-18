@@ -14,7 +14,7 @@ export default function Home() {
         paragraph="AI-Powered Chatbots: Disrupt and Capture the Market, Propelling Your Business Forward."
         buttonText="Try Now!"
         imageSrc="/images/geekpieaihero.jpg"
-        imageSrcMobile="/images/trialsm.jpg"
+        imageSrcMobile="/images/geekpieaihero-sm.jpg"
         alt="Hero Image"
       />
       <Features />
