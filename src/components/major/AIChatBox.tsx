@@ -104,11 +104,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               </p>
               <div className="mt-7 flex items-center justify-center gap-3 text-start">
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
-                  <IoCogOutline className="mb-2 text-xl text-yellow-400" />
+                  <IoCogOutline className="mb-2 text-2xl text-yellow-400 md:text-xl" />
                   Services offered by GeekPie AI?
                 </div>
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
-                  <GoDependabot className="mb-2 text-xl text-blue-400" />
+                  <GoDependabot className="mb-2 text-2xl text-blue-400 md:text-xl" />
                   Tell me more about GeekPie AI.
                 </div>
               </div>
@@ -121,7 +121,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         >
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-3xl md:text-2xl disabled:opacity-50"
+            className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
             title="Clear Chat"
             disabled={messages.length === 0}
             onClick={() => setMessages([])}
@@ -138,7 +138,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           />
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-3xl md:text-2xl disabled:opacity-50"
+            className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
             title="Send message"
             disabled={!input || isLoading}
             onClick={() => setMessages([])}
