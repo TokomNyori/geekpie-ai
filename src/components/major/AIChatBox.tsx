@@ -36,11 +36,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     }
   }, [messages]);
 
-  useEffect(() => {
-    if (open) {
-      inputRef.current?.focus();
-    }
-  }, [open]);
+  // useEffect(() => {
+  //   if (open) {
+  //     inputRef.current?.focus();
+  //   }
+  // }, [open]);
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
@@ -57,7 +57,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-lg border border-gray-500/50 bg-black/60 backdrop-blur-[12px] md:h-[37.5rem]">
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black/60 backdrop-blur-[12px] md:h-[37.5rem]">
         <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div>
         <div
           className="mt-4 h-full w-full overflow-y-auto px-4"
