@@ -97,10 +97,8 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 />
               </div>
               <p className="text-center text-white">
-                <span className="text-lg font-semibold">
-                  GeekPie AI.
-                </span>{" "}
-                <br />I am your assistant. How may I help you today?
+                <span className="text-lg font-semibold">GeekPie AI</span> <br />
+                How may I help you today?
               </p>
               <div className="mt-7 flex items-center justify-center gap-3 text-start">
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
