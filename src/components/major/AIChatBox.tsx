@@ -98,7 +98,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               </div>
               <p className="text-center text-white">
                 <span className="text-lg font-semibold">
-                  Welcome to GeekPie AI.
+                  GeekPie AI.
                 </span>{" "}
                 <br />I am your assistant. How may I help you today?
               </p>
