@@ -117,11 +117,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-500/50 bg-transparent px-2.5 py-1"
+          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-500/50 bg-transparent px-2.5 py-3"
         >
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-2xl disabled:opacity-50"
+            className="flex flex-none items-center justify-center text-3xl md:text-2xl disabled:opacity-50"
             title="Clear Chat"
             disabled={messages.length === 0}
             onClick={() => setMessages([])}
@@ -134,11 +134,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             value={input}
             onChange={handleInputChange}
             placeholder="Message GeekPie AI"
-            className="grow bg-transparent px-1 py-2 focus:outline-none"
+            className="grow bg-transparent px-1 focus:outline-none"
           />
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-2xl disabled:opacity-50"
+            className="flex flex-none items-center justify-center text-3xl md:text-2xl disabled:opacity-50"
             title="Send message"
             disabled={!input || isLoading}
             onClick={() => setMessages([])}
