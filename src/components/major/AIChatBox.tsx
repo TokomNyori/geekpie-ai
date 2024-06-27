@@ -6,6 +6,8 @@ import ReactMarkDown from "react-markdown";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import SiriOrb from "@/assets/jsons/siri-orb.json";
+import Orb2 from "@/assets/jsons/orb-2.json";
+import Orb3 from "@/assets/jsons/orb-3.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -92,7 +94,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               <div className="">
                 <Lottie
                   className="w-[10rem] rounded-full"
-                  animationData={SiriOrb}
+                  animationData={Orb3}
                   loop={true}
                 />
               </div>
@@ -166,7 +168,7 @@ function ChatMessages({ message: { role, content } }: MessageProps) {
       {aiMessages && (
         <Lottie
           className="-ml-2 w-[2rem] rounded-full"
-          animationData={SiriOrb}
+          animationData={Orb3}
           loop={true}
         />
       )}
