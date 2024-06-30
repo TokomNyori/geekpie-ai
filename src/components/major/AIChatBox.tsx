@@ -65,7 +65,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/10 backdrop-blur-xl md:h-[37.5rem]">
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/5 backdrop-blur-xl md:h-[37.5rem]">
         {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
           className="mt-4 h-full w-full overflow-y-auto px-3"
@@ -106,10 +106,13 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 />
               </div>
               <p className="text-center text-white">
-                <span className="text-xl font-semibold leading-relaxed">GeekPie AI</span> <br />
+                <span className="text-xl font-semibold leading-relaxed">
+                  GeekPie AI
+                </span>{" "}
+                <br />
                 <span className="">How may I help you today?</span>
               </p>
-              <div className="mt-7 flex items-center justify-center gap-3 text-start">
+              <div className="mt-7 flex items-stretch justify-center gap-3 text-start">
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
                   <IoCogOutline className="mb-2 text-2xl text-yellow-400 md:text-xl" />
                   What are the services offered by GeekPie AI?
@@ -124,7 +127,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-200/50 bg-transparent px-2.5 py-3"
+          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-100/55 bg-transparent px-2.5 py-3"
         >
           <button
             type="submit"
@@ -186,13 +189,9 @@ function ChatMessages({ message: { role, content } }: MessageProps) {
       )}
     >
       {aiMessages ? (
-        <div className="relative -mt-0.5 mr-1 ml-1 w-[1.8rem] flex-none">
+        <div className="relative -mt-0.5 ml-1 mr-1 w-[1.8rem] flex-none">
           <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
-          <Lottie
-            className="rounded-full"
-            animationData={Orb}
-            loop={true}
-          />
+          <Lottie className="rounded-full" animationData={Orb} loop={true} />
         </div>
       ) : (
         <FaCircleUser className="w-[2rem] flex-none text-yellow-400/80" />
