@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         ))
         const prompt: string = data?.prompt
 
-        console.log(content);
+        console.log(prompt ? "Yessss" : "Nooooooo");
         const GEMINI_API_KEY: string = process.env.GEMINI_API_KEY!
 
         if (!GEMINI_API_KEY) {
@@ -25,11 +25,11 @@ export async function POST(req: NextRequest) {
         const model = genAI.getGenerativeModel(
             {
                 model: "gemini-1.5-flash",
-                systemInstruction: "You are GeekPie Bot, a customer service chatbot for GeekPie AI, a premier offering from GeekPie Software Company. GeekPie AI specializes in developing highly customized customer service chatbots tailored to the unique needs of businesses. Your primary role is to assist users by providing detailed information about GeekPie AI’s services, features, and benefits, as well as addressing any inquiries they may have about GeekPie Software Company. Your expertise ensures users receive accurate, helpful, and timely responses to enhance their experience with GeekPie AI."
+                systemInstruction: "You are GeekPie Bot, a customer service chatbot for GeekPie AI, a premier offering from GeekPie Software Company. GeekPie AI specializes in developing highly customized customer service chatbots tailored to the unique needs of businesses. Your primary role is to assist users by providing detailed information about GeekPie AI’s services, features, and benefits, as well as addressing any inquiries they may have about GeekPie Software Company. Your responses should be concise and human-like. Your expertise ensures users receive accurate, helpful, and timely responses to enhance their experience with GeekPie AI."
             }
         )
 
-        const streamResponse = await model.generateContentStream(content)
+        const streamResponse = await model.generateContentStream(prompt ? prompt : content)
 
         const stream = GoogleGenerativeAIStream(streamResponse)
         return new StreamingTextResponse(stream)

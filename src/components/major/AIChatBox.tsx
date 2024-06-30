@@ -14,7 +14,8 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import { FaCircleStop } from "react-icons/fa6";
 import { FaCircleUser } from "react-icons/fa6";
-import { use, useEffect, useRef } from "react";
+import { use, useEffect, useRef, useState } from "react";
+import { createMockFormEvent } from "@/fakers/fakers";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -31,10 +32,12 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     isLoading,
     error,
     stop,
+    setInput,
   } = useChat({
     api: "/api/genai",
   });
 
+  const [demoPrompt, setDemoPrompt] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -43,6 +46,13 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    if (input && demoPrompt) {
+      handleSubmit(createMockFormEvent());
+      setDemoPrompt(false);
+    }
+  }, [input, demoPrompt, handleSubmit]);
 
   // useEffect(() => {
   //   if (open) {
@@ -53,6 +63,14 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
   console.log(messages);
+
+  // async function sendDemoPrompts(event: any) {
+  //   handleSubmit(createMockFormEvent(), {
+  //     data: {
+  //       prompt: input,
+  //     },
+  //   });
+  // }
 
   return (
     <div
@@ -67,7 +85,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/10 backdrop-blur-[28px] md:h-[37.5rem]">
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-900/10 backdrop-blur-[24px] md:h-[37.5rem]">
         {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
           className="mt-6 h-full w-full overflow-y-auto px-4"
@@ -78,8 +96,8 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           ))}
 
           {isLoading && isLastMessageByUser && (
-            <div className="flex w-full items-start justify-start text-gray-100">
-              <div className="relative -mt-0.5 ml-1 mr-1 w-[1.8rem] flex-none">
+            <div className="mb-3 flex w-full items-start justify-start text-gray-100">
+              <div className="relative -ml-1 -mt-0.5 mr-1.5 w-[1.6rem] flex-none">
                 <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
                 <Lottie
                   className="rounded-full"
@@ -132,11 +150,23 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 <span className="">How may I help you today?</span>
               </p>
               <div className="mt-7 flex items-stretch justify-center gap-3 text-start">
-                <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
+                <div
+                  className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15"
+                  onClick={(event) => {
+                    setInput("What are the services offered by GeekPie AI?");
+                    setDemoPrompt(true);
+                  }}
+                >
                   <IoCogOutline className="mb-2 text-2xl text-yellow-400 md:text-xl" />
                   What are the services offered by GeekPie AI?
                 </div>
-                <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
+                <div
+                  className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15"
+                  onClick={(event) => {
+                    setInput("Can you tell me more about GeekPie AI?");
+                    setDemoPrompt(true);
+                  }}
+                >
                   <GoDependabot className="mb-2 text-2xl text-blue-400 md:text-xl" />
                   Can you tell me more about GeekPie AI?
                 </div>
@@ -164,6 +194,15 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             onChange={handleInputChange}
             placeholder="Message GeekPie AI"
             className="grow bg-transparent px-1 focus:outline-none"
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && input) {
+                event.preventDefault();
+                handleSubmit(createMockFormEvent());
+                if (inputRef && inputRef.current) {
+                  inputRef.current.blur(); // This will close the virtual keyboard
+                }
+              }
+            }}
           />
           <button
             type={isLoading ? "button" : "submit"}
@@ -200,7 +239,7 @@ function ChatMessages({ message: { role, content, id } }: MessageProps) {
       )}
     >
       {aiMessages && (
-        <div className="relative -mt-0.5 mr-1 w-[1.8rem] flex-none">
+        <div className="relative -ml-1 -mt-0.5 mr-1.5 w-[1.6rem] flex-none">
           <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
           <Lottie className="rounded-full" animationData={Orb} loop={true} />
         </div>
