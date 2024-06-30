@@ -7,6 +7,8 @@ import Link from "next/link";
 import Lottie from "lottie-react";
 import SiriOrb from "@/assets/jsons/siri-orb.json";
 import Orb from "@/assets/jsons/orb1.json";
+import ThinkingAni from "@/assets/jsons/thinking.json";
+import TypingAni from "@/assets/jsons/typing.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -68,7 +70,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/5 backdrop-blur-xl md:h-[37.5rem]">
         {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
-          className="mt-4 h-full w-full overflow-y-auto px-3"
+          className="mt-6 h-full w-full overflow-y-auto px-4"
           ref={scrollRef}
         >
           {messages.map((message, index) => (
@@ -76,13 +78,30 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           ))}
 
           {isLoading && isLastMessageByUser && (
-            <ChatMessages
-              message={{
-                id: "loading",
-                role: "assistant",
-                content: "Thinking...",
-              }}
-            />
+            <div className="flex w-full items-start justify-start text-gray-100">
+              <div className="relative -mt-0.5 ml-1 mr-1 w-[1.8rem] flex-none">
+                <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
+                <Lottie
+                  className="rounded-full"
+                  animationData={Orb}
+                  loop={true}
+                />
+              </div>
+              <div
+                className={cn(
+                  "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border border-blue-400/40 bg-black px-3 py-2 pr-10 text-start",
+                )}
+              >
+                Thinking
+                <div className="absolute right-2.5 top-0 mt-2.5 w-[1.5rem]">
+                  <Lottie
+                    className="rounded-full"
+                    animationData={TypingAni}
+                    loop={true}
+                  />
+                </div>
+              </div>
+            </div>
           )}
 
           {error && (
@@ -127,7 +146,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-100/55 bg-transparent px-2.5 py-3"
+          className="m-3 mb-5 mt-0 flex gap-1 rounded-3xl border border-gray-100/55 bg-transparent px-2.5 py-3"
         >
           <button
             type="submit"
@@ -169,39 +188,29 @@ type MessageProps = {
   message: Message;
 };
 
-function ChatMessages({ message: { role, content } }: MessageProps) {
+function ChatMessages({ message: { role, content, id } }: MessageProps) {
   const aiMessages = role === "assistant";
-
-  function preprocessContent(content: string) {
-    // This regex matches URLs not already enclosed in markdown link syntax
-    const urlRegex =
-      /(?<!\]\()(\bhttps?:\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?![^\s]*\))/gi;
-    return content.replace(urlRegex, (url) => `[${url}](${url})`);
-  }
-
-  const processedContent = preprocessContent(content); // Preprocess to detect plain URLs
+  const idStatus = id === "loading";
 
   return (
     <div
       className={cn(
         "mb-3 flex w-full items-start text-gray-100",
-        aiMessages ? "justify-start" : "flex-row-reverse justify-start",
+        aiMessages ? "justify-start" : "justify-end",
       )}
     >
-      {aiMessages ? (
-        <div className="relative -mt-0.5 ml-1 mr-1 w-[1.8rem] flex-none">
+      {aiMessages && (
+        <div className="relative -mt-0.5 mr-1 w-[1.8rem] flex-none">
           <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
           <Lottie className="rounded-full" animationData={Orb} loop={true} />
         </div>
-      ) : (
-        <FaCircleUser className="w-[2rem] flex-none text-yellow-400/80" />
       )}
       <div
         className={cn(
           "overflow-x-auto rounded-lg border bg-black px-3 py-2",
           aiMessages
-            ? "mr-7 rounded-tl-none border-blue-400/40 text-start"
-            : "ml-7 rounded-tr-none border-yellow-400/40 text-end",
+            ? "mr-3 rounded-tl-none border-blue-400/40 text-start"
+            : "ml-12 rounded-tr-none border-yellow-400/40 text-start",
         )}
       >
         <ReactMarkDown
