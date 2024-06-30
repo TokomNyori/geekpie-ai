@@ -6,11 +6,12 @@ import ReactMarkDown from "react-markdown";
 import Link from "next/link";
 import Lottie from "lottie-react";
 import SiriOrb from "@/assets/jsons/siri-orb.json";
-import Orb2 from "@/assets/jsons/orb-2.json";
-import Orb3 from "@/assets/jsons/orb-3.json";
+import Orb from "@/assets/jsons/orb1.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
+import { FaCircleStop } from "react-icons/fa6";
+import { FaCircleUser } from "react-icons/fa6";
 import { use, useEffect, useRef } from "react";
 
 type AIChatBoxProps = {
@@ -27,7 +28,10 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     setMessages,
     isLoading,
     error,
-  } = useChat();
+    stop,
+  } = useChat({
+    api: "/api/genai",
+  });
 
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -46,23 +50,25 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
+  console.log(messages);
+
   return (
     <div
       className={cn(
-        "bottom-0 right-0 z-50 w-full max-w-[31.25rem] p-1 xl:right-36",
+        "bottom-0 right-0 z-50 w-full max-w-[34.25rem] p-1 xl:right-36",
         open ? "fixed" : "hidden",
       )}
     >
       <button
-        className="mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[8px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
+        className="mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
         onClick={onClose}
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[12px] md:h-[37.5rem]">
-        <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div>
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/10 backdrop-blur-xl md:h-[37.5rem]">
+        {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
-          className="mt-4 h-full w-full overflow-y-auto px-4"
+          className="mt-4 h-full w-full overflow-y-auto px-3"
           ref={scrollRef}
         >
           {messages.map((message, index) => (
@@ -91,10 +97,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
           {!error && messages.length === 0 && (
             <div className="flex h-full flex-col items-center justify-center">
-              <div className="">
+              <div className="relative mb-4 w-[7rem]">
+                <div className="absolute inset-0 rounded-full bg-blue-500/50 blur-2xl filter"></div>
                 <Lottie
-                  className="w-[10rem] rounded-full"
-                  animationData={Orb3}
+                  className="rounded-full"
+                  animationData={Orb}
                   loop={true}
                 />
               </div>
@@ -105,11 +112,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               <div className="mt-7 flex items-center justify-center gap-3 text-start">
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
                   <IoCogOutline className="mb-2 text-2xl text-yellow-400 md:text-xl" />
-                  Services offered by GeekPie AI?
+                  What are the services offered by GeekPie AI?
                 </div>
                 <div className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15">
                   <GoDependabot className="mb-2 text-2xl text-blue-400 md:text-xl" />
-                  Tell me more about GeekPie AI.
+                  Can you tell me more about GeekPie AI?
                 </div>
               </div>
             </div>
@@ -117,7 +124,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-500/50 bg-transparent px-2.5 py-3"
+          className="m-3 mb-5 flex gap-1 rounded-3xl border border-gray-200/50 bg-transparent px-2.5 py-3"
         >
           <button
             type="submit"
@@ -137,13 +144,17 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             className="grow bg-transparent px-1 focus:outline-none"
           />
           <button
-            type="submit"
+            type={isLoading ? "button" : "submit"}
             className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
             title="Send message"
-            disabled={!input || isLoading}
-            onClick={() => setMessages([])}
+            disabled={!input && !isLoading}
+            onClick={() => isLoading && stop()}
           >
-            <FaCircleArrowUp className="" />
+            {!isLoading ? (
+              <FaCircleArrowUp className="" />
+            ) : (
+              <FaCircleStop className="" />
+            )}
           </button>
         </form>
       </div>
@@ -158,26 +169,40 @@ type MessageProps = {
 function ChatMessages({ message: { role, content } }: MessageProps) {
   const aiMessages = role === "assistant";
 
+  function preprocessContent(content: string) {
+    // This regex matches URLs not already enclosed in markdown link syntax
+    const urlRegex =
+      /(?<!\]\()(\bhttps?:\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?![^\s]*\))/gi;
+    return content.replace(urlRegex, (url) => `[${url}](${url})`);
+  }
+
+  const processedContent = preprocessContent(content); // Preprocess to detect plain URLs
+
   return (
     <div
       className={cn(
-        "mb-3 flex items-start",
-        aiMessages ? "justify-start" : "justify-end",
+        "mb-3 flex w-full items-start text-gray-100",
+        aiMessages ? "justify-start" : "flex-row-reverse justify-start",
       )}
     >
-      {aiMessages && (
-        <Lottie
-          className="-ml-2 w-[2rem] rounded-full"
-          animationData={Orb3}
-          loop={true}
-        />
+      {aiMessages ? (
+        <div className="relative -mt-0.5 mr-1 ml-1 w-[1.8rem] flex-none">
+          <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
+          <Lottie
+            className="rounded-full"
+            animationData={Orb}
+            loop={true}
+          />
+        </div>
+      ) : (
+        <FaCircleUser className="w-[2rem] flex-none text-yellow-400/80" />
       )}
       <div
         className={cn(
-          "rounded-lg border px-3 py-2",
+          "overflow-x-auto rounded-lg border bg-black px-3 py-2",
           aiMessages
-            ? "rounded-tl-none border-blue-400/25 text-start"
-            : "rounded-tr-none border-gray-500/50 text-end",
+            ? "mr-7 rounded-tl-none border-blue-400/40 text-start"
+            : "ml-7 rounded-tr-none border-yellow-400/40 text-end",
         )}
       >
         <ReactMarkDown
@@ -186,6 +211,7 @@ function ChatMessages({ message: { role, content } }: MessageProps) {
               <Link
                 {...props}
                 href={props.href ?? ""}
+                target="_blank"
                 className="text-green-500 hover:underline"
               />
             ),

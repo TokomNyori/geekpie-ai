@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { ChatCompletionMessageParam } from "ai/prompts";
 
+
 export async function POST(req: NextRequest) {
     try {
         const { messages } = await req.json();

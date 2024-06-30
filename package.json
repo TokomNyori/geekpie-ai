@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.24",
     "@datastax/astra-db-ts": "^0.1.4",
+    "@google/generative-ai": "^0.14.0",
     "@gsap/react": "^2.1.1",
     "@langchain/openai": "^0.0.13",
     "@upstash/redis": "^1.31.6",
