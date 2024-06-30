@@ -67,7 +67,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/5 backdrop-blur-2xl md:h-[37.5rem]">
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-50/10 backdrop-blur-[28px] md:h-[37.5rem]">
         {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
           className="mt-6 h-full w-full overflow-y-auto px-4"
