@@ -97,8 +97,8 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
           {isLoading && isLastMessageByUser && (
             <div className="mb-3 flex w-full items-start justify-start text-gray-100">
-              <div className="relative -ml-1 -mt-0.5 mr-1.5 w-[1.6rem] flex-none">
-                <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
+              <div className="-ml-0.5 -mt-0.5 mr-1.5 w-[1.8rem] flex-none">
+                {/* <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div> */}
                 <Lottie
                   className="rounded-full"
                   animationData={Orb}
@@ -239,8 +239,8 @@ function ChatMessages({ message: { role, content, id } }: MessageProps) {
       )}
     >
       {aiMessages && (
-        <div className="relative -ml-1 -mt-0.5 mr-1.5 w-[1.6rem] flex-none">
-          <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div>
+        <div className="-ml-0.5 -mt-0.5 mr-1.5 w-[1.8rem] flex-none">
+          {/* <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div> */}
           <Lottie className="rounded-full" animationData={Orb} loop={true} />
         </div>
       )}
