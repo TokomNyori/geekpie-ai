@@ -85,7 +85,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       >
         <IoCloseCircleOutline />
       </button>
-      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-gray-900/10 backdrop-blur-[24px] md:h-[37.5rem]">
+      <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[37.5rem]">
         {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
         <div
           className="mt-6 h-full w-full overflow-y-auto px-4"
@@ -107,7 +107,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               </div>
               <div
                 className={cn(
-                  "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border border-blue-400/40 bg-black px-3 py-2 pr-10 text-start",
+                  "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border-none bg-zinc-900 px-3 py-2 pr-10 text-start",
                 )}
               >
                 Thinking
@@ -135,7 +135,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           {!error && messages.length === 0 && (
             <div className="flex h-full flex-col items-center justify-center">
               <div className="relative mb-4 w-[7rem]">
-                <div className="absolute inset-0 rounded-full bg-blue-500/50 blur-2xl filter"></div>
+                <div className="absolute inset-0 -z-10 rounded-full bg-blue-500/50 blur-2xl filter"></div>
                 <Lottie
                   className="rounded-full"
                   animationData={Orb}
@@ -176,11 +176,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="m-3 mb-5 mt-0 flex gap-1 rounded-3xl border border-gray-100/80 bg-transparent px-2.5 py-3"
+          className="m-3 mb-5 mt-0 flex gap-1 rounded-3xl border border-gray-400/70 bg-transparent px-2.5 py-3"
         >
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-3xl text-red-500 disabled:text-gray-100/80 md:text-2xl"
+            className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
             title="Clear Chat"
             disabled={messages.length === 0}
             onClick={() => setMessages([])}
@@ -206,7 +206,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           />
           <button
             type={isLoading ? "button" : "submit"}
-            className="flex flex-none items-center justify-center text-3xl text-green-500 disabled:text-gray-100/80 md:text-2xl"
+            className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
             title="Send message"
             disabled={!input && !isLoading}
             onClick={() => isLoading && stop()}
@@ -214,7 +214,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             {!isLoading ? (
               <FaCircleArrowUp className="" />
             ) : (
-              <FaCircleStop className="text-red-500" />
+              <FaCircleStop className="" />
             )}
           </button>
         </form>
@@ -246,10 +246,10 @@ function ChatMessages({ message: { role, content, id } }: MessageProps) {
       )}
       <div
         className={cn(
-          "overflow-x-auto rounded-lg border bg-black px-3 py-2",
+          "overflow-x-auto rounded-lg border bg-zinc-900 px-3 py-2",
           aiMessages
-            ? "mr-3 rounded-tl-none border-blue-400/40 text-start"
-            : "ml-12 rounded-tr-none border-yellow-400/40 text-start",
+            ? "mr-3 rounded-tl-none border-none text-start"
+            : "ml-12 rounded-tr-none border-none text-start",
         )}
       >
         <ReactMarkDown
