@@ -94,7 +94,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     >
       <div
         className={cn(
-          "w-full md:max-w-[38.25rem] pb-0.5 md:p-1 lg:max-w-[34.25rem] lg:-translate-x-10 xl:-translate-x-40",
+          "w-full pb-0.5 md:max-w-[38.25rem] md:p-1 lg:max-w-[34.25rem] lg:-translate-x-10 xl:-translate-x-40",
         )}
       >
         <button
@@ -197,7 +197,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             className="m-3 mb-5 mt-0 flex gap-1 rounded-3xl border border-gray-400/70 bg-transparent px-2.5 py-3"
           >
             <button
-              type="submit"
+              type="button"
               className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
               title="Clear Chat"
               disabled={messages.length === 0 || isLoading}
