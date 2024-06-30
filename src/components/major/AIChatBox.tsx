@@ -253,7 +253,7 @@ function ChatMessages({ message: { role, content, id } }: MessageProps) {
   return (
     <div
       className={cn(
-        "mb-3 flex w-full items-start text-gray-100",
+        "mb-5 flex w-full items-start text-gray-100",
         aiMessages ? "justify-start" : "justify-end",
       )}
     >
