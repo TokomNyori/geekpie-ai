@@ -180,7 +180,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         >
           <button
             type="submit"
-            className="flex flex-none items-center justify-center text-3xl text-red-400 disabled:text-gray-100/80 md:text-2xl"
+            className="flex flex-none items-center justify-center text-3xl text-red-500 disabled:text-gray-100/80 md:text-2xl"
             title="Clear Chat"
             disabled={messages.length === 0}
             onClick={() => setMessages([])}
@@ -206,7 +206,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           />
           <button
             type={isLoading ? "button" : "submit"}
-            className="flex flex-none items-center justify-center text-3xl text-green-400 disabled:text-gray-100/80 md:text-2xl"
+            className="flex flex-none items-center justify-center text-3xl text-green-500 disabled:text-gray-100/80 md:text-2xl"
             title="Send message"
             disabled={!input && !isLoading}
             onClick={() => isLoading && stop()}
@@ -214,7 +214,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             {!isLoading ? (
               <FaCircleArrowUp className="" />
             ) : (
-              <FaCircleStop className="text-red-400" />
+              <FaCircleStop className="text-red-500" />
             )}
           </button>
         </form>
