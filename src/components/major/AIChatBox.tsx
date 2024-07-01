@@ -2,20 +2,17 @@ import { cn } from "@/libs/utils";
 import { useChat, Message } from "ai/react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { GoDependabot } from "react-icons/go";
-import ReactMarkDown from "react-markdown";
-import Link from "next/link";
 import Lottie from "lottie-react";
-import SiriOrb from "@/assets/jsons/siri-orb.json";
 import Orb from "@/assets/jsons/orb1.json";
-import ThinkingAni from "@/assets/jsons/thinking.json";
 import TypingAni from "@/assets/jsons/typing.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import { FaCircleStop } from "react-icons/fa6";
-import { FaCircleUser } from "react-icons/fa6";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createMockFormEvent, createMockMouseEvent } from "@/fakers/fakers";
+import ChatMessages from "../minor/ChatMessages";
+import { isInputEmpty } from "@/helpers/isInputEmptyORwhiteSpace";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -40,7 +37,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     stop,
     setInput,
   } = useChat({
-    api: "/api/genai",
+    api: "/api/langai",
   });
 
   const [demoPrompt, setDemoPrompt] = useState(false);
@@ -213,7 +210,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               placeholder="Message GeekPie AI"
               className="grow bg-transparent px-1 focus:outline-none"
               onKeyDown={(event) => {
-                if (event.key === "Enter" && input) {
+                if (event.key === "Enter" && !isInputEmpty(input)) {
                   event.preventDefault();
                   handleSubmit(createMockFormEvent());
                   if (inputRef && inputRef.current) {
@@ -226,7 +223,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               type={isLoading ? "button" : "submit"}
               className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
               title="Send message"
-              disabled={!input && !isLoading}
+              disabled={isInputEmpty(input) && !isLoading}
               onClick={() => isLoading && stop()}
             >
               {!isLoading ? (
@@ -241,63 +238,5 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     </div>
   );
 };
-
-type MessageProps = {
-  message: Message;
-};
-
-function ChatMessages({ message: { role, content, id } }: MessageProps) {
-  const aiMessages = role === "assistant";
-  const idStatus = id === "loading";
-
-  return (
-    <div
-      className={cn(
-        "mb-5 flex w-full items-start text-gray-100",
-        aiMessages ? "justify-start" : "justify-end",
-      )}
-    >
-      {aiMessages && (
-        <div className="-ml-0.5 -mt-0.5 mr-1.5 w-[1.8rem] flex-none">
-          {/* <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div> */}
-          <Lottie className="rounded-full" animationData={Orb} loop={true} />
-        </div>
-      )}
-      <div
-        className={cn(
-          "overflow-x-auto rounded-lg border bg-zinc-900 px-3 py-2",
-          aiMessages
-            ? "mr-3 rounded-tl-none border-none text-start"
-            : "ml-12 rounded-tr-none border-none text-start",
-        )}
-      >
-        <ReactMarkDown
-          components={{
-            a: ({ node, ref, ...props }) => (
-              <Link
-                {...props}
-                href={props.href ?? ""}
-                target="_blank"
-                className="text-green-500 hover:underline"
-              />
-            ),
-            p: ({ node, ...props }) => (
-              <p {...props} className="mt-3 first:mt-0" />
-            ),
-            ul: ({ node, ...props }) => (
-              <ul
-                {...props}
-                className="mt-3 list-inside list-disc first:mt-0"
-              />
-            ),
-            li: ({ node, ...props }) => <li {...props} className="mt-1" />,
-          }}
-        >
-          {content}
-        </ReactMarkDown>
-      </div>
-    </div>
-  );
-}
 
 export default AIChatBox;

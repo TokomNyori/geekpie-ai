@@ -1,0 +1,1 @@
+export const isInputEmpty = (input: string) => input.trim() === '';

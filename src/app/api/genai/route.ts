@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         const prompt: string = data?.prompt
 
         console.log(prompt ? "Yessss" : "Nooooooo");
-        const GEMINI_API_KEY: string = process.env.GEMINI_API_KEY!
+        const GEMINI_API_KEY = process.env.GOOGLE_API_KEY
 
         if (!GEMINI_API_KEY) {
             return NextResponse.json({
