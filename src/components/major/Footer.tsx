@@ -1,5 +1,5 @@
 import Link from "next/link";
-import WordMark from "../../otherComponents/svg-components/WordMark";
+import WordMark from "../svg-components/WordMark";
 import LogoMark from "../minor/PlainLogo";
 
 const Footer = () => {
