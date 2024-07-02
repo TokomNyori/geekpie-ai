@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
 
         const streamResponse = await model.generateContentStream(prompt ? prompt : content)
 
+        
         const stream = GoogleGenerativeAIStream(streamResponse)
         return new StreamingTextResponse(stream)
 

@@ -9,6 +9,7 @@ import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import { FaCircleStop } from "react-icons/fa6";
+import { IoCalendarOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { createMockFormEvent, createMockMouseEvent } from "@/fakers/fakers";
 import ChatMessages from "../minor/ChatMessages";
@@ -178,12 +179,14 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                   <div
                     className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15"
                     onClick={(event) => {
-                      setInput("Can you tell me more about GeekPie AI?");
+                      setInput(
+                        "Can you arrange a meeting with the GeekPie team?",
+                      );
                       setDemoPrompt(true);
                     }}
                   >
-                    <GoDependabot className="mb-2 text-2xl text-blue-400 md:text-xl" />
-                    Can you tell me more about GeekPie AI?
+                    <IoCalendarOutline className="mb-2 text-2xl text-blue-400 md:text-xl" />
+                    Can you arrange a meeting with the GeekPie team?
                   </div>
                 </div>
               </div>
