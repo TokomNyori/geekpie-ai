@@ -30,14 +30,14 @@ export async function POST(req: NextRequest) {
         const { stream, handlers } = LangChainStream();
 
         const model = new ChatGoogleGenerativeAI({
-            model: "gemini-1.5-pro",
+            model: "gemini-1.5-flash",
             streaming: true,
             callbacks: [handlers],
             verbose: true
         })
 
         const rephrasingModel = new ChatGoogleGenerativeAI({
-            model: "gemini-1.5-pro",
+            model: "gemini-1.5-flash",
             verbose: true
         })
 
