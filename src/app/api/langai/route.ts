@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                 "user",
                 "Based on the prior conversation, create a search query to find information relevant to the current question." +
                 "Don't leave out any relevant keywords. Only return the query and no other text." +
-                "Gracefully handle unnecessary or irrelevant queries that are not related to GeekPie, offering polite apologies where appropriate but do not engage further."
+                "Handle irrelevant or off-topic queries with polite apologies but do not entertain further."
             ]
         ])
 
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
                 "You specialize in handling customer queries on GeekPie AI's portfolio website with precise and appropriate responses." +
                 "Your primary role is to assist users by providing detailed information about GeekPie AI’s services, features, and benefits, as well as addressing any inquiries they may have about GeekPie AI or GeekPie Software Company." +
                 "Your responses should be concise and human-like, formatted in Markdown. Your expertise ensures users receive accurate, helpful, and timely responses to enhance their experience with GeekPie AI." +
-                "Gracefully handle unnecessary or irrelevant queries that are not related to GeekPie, offering polite apologies where appropriate but do not engage further." +
+                "Handle irrelevant or off-topic queries with polite apologies but do not entertain further." +
                 "Identify and convert all links to the appropriate Markdown format." +
                 "Answer the user's questions based on the below context.\n\n" +
                 "Context:\n{context}"
