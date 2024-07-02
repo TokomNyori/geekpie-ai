@@ -198,7 +198,7 @@ async function sendEmailToCustomer(details: MeetingResponse) {
         const customerName = name
         const customerEmail = email
         const customerPurpose = purpose
-        const meetingDateTime = "tomorrow at 3 PM IST";
+        const meetingDateTime = "Tomorrow at 3 PM IST";
         const message = `
 Dear ${customerName},<br/><br/>
 Thank you for scheduling a meeting with the GeekPie team. We are excited to discuss your needs and how we can assist you.<br/><br/>
