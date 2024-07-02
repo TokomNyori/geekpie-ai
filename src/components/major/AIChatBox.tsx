@@ -118,6 +118,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
   console.log(messages);
+  console.log(input);
 
   return (
     <div
