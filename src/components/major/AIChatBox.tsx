@@ -41,6 +41,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     api: "/api/langai",
   });
 
+  const [isMobileView, setIsMobileView] = useState<Boolean>();
   const [demoPrompt, setDemoPrompt] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -78,6 +79,41 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       document.head.removeChild(style);
     };
   }, [open]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const width = window.innerWidth;
+    //console.log(height)
+    if (width < 641) {
+      setIsMobileView(true);
+      console.log(`First Window width: ${width}, Mobile view: ${width < 641}`);
+    } else {
+      setIsMobileView(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    function handleResize() {
+      const width = window.innerWidth;
+      if (width < 641) {
+        setIsMobileView(true);
+        console.log(`Window width: ${width}, Mobile view: ${width < 641}`);
+      } else {
+        setIsMobileView(false);
+      }
+    }
+    // Add the event listener
+    window.addEventListener("resize", handleResize);
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
@@ -213,12 +249,22 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               placeholder="Message GeekPie AI"
               className="grow bg-transparent px-1 focus:outline-none"
               onKeyDown={(event) => {
-                if (event.key === "Enter" && !isInputEmpty(input)) {
+                if (
+                  event.key === "Enter" &&
+                  !isInputEmpty(input) &&
+                  !isMobileView
+                ) {
                   event.preventDefault();
                   handleSubmit(createMockFormEvent());
-                  if (inputRef && inputRef.current) {
+                  if (inputRef && inputRef.current && isMobileView) {
                     inputRef.current.blur(); // This will close the virtual keyboard
                   }
+                } else if (
+                  event.key === "Enter" &&
+                  !isInputEmpty(input) &&
+                  isMobileView
+                ) {
+                  event.preventDefault();
                 }
               }}
             />
