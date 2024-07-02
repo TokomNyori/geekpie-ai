@@ -1,4 +1,3 @@
-import { google } from '@ai-sdk/google';
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAIStream, LangChainStream, StreamingTextResponse } from "ai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
