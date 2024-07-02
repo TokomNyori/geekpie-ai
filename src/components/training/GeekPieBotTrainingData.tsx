@@ -111,11 +111,11 @@ const GeekPieBotTrainingData = () => {
         <h1>How can I contact you?</h1>
         <p>
           Contact us by phone, WhatsApp, email, or visit our office. Our GeekPie
-          Bot can provide all relevant information and arrange a meeting after
-          asking just a few simple questions, such as your email, name, and
-          purpose. After receiving the details, GeekPie Bot will send you a
-          confirmation email with the date and time. You can adjust the date and
-          time directly within the email.
+          Bot can provide all relevant information and arrange a meeting for you
+          by asking just three simple questions in markdown list format: your
+          email, your name, and the purpose of the meeting. After receiving the
+          details, GeekPie Bot will send you a confirmation email with the date
+          and time. You can adjust the date and time directly within the email.
         </p>
       </div>
       <div>

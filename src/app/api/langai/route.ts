@@ -108,6 +108,8 @@ export async function POST(req: NextRequest) {
 
 
 
+
+// Meeting Mail  functions
 function meetingDetector(msgs: GeminiMessage[]) {
     const meetingRegex = /\b(meeting|meting|meetin|meetin|meetting)\b/i;
     const human = msgs
