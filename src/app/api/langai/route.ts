@@ -11,6 +11,8 @@ import { GeminiMessage, MeetingResponse } from '@/helpers/typeScriptTypes';
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retriever";
 import nodemailer from 'nodemailer';
+const geekpieEmail = process.env.NODEMAILER_MAIL_SENDER
+const pass = process.env.ZOHO_APP_PASS_GEEKPIE_AI
 
 
 export async function POST(req: NextRequest) {
@@ -190,9 +192,6 @@ async function detectMeetingDetails(messages: string[]) {
 
 
 async function sendEmailToCustomer(details: MeetingResponse) {
-    const geekpieEmail = process.env.NODEMAILER_MAIL_SENDER
-    const pass = process.env.ZOHO_APP_PASS_GEEKPIE_AI
-
     if (details.details) {
         const { name, email, purpose } = details.details;
         const customerName = name
