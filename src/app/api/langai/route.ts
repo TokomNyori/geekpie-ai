@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         const lastMessage = messages[messages.length - 1].content
         //const clientPrompt: string = data?.prompt
 
-        //console.log(messages)
+        // Complete the redis setup here...
 
         const { stream, handlers } = LangChainStream();
 
@@ -35,12 +35,12 @@ export async function POST(req: NextRequest) {
             model: "gemini-1.5-flash",
             streaming: true,
             callbacks: [handlers],
-            verbose: true
+            verbose: true,
         })
 
         const rephrasingModel = new ChatGoogleGenerativeAI({
             model: "gemini-1.5-flash",
-            verbose: true
+            verbose: true,
         })
 
         const retriever = (await getVectorStrore()).asRetriever();
