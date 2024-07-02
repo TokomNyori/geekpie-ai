@@ -2,7 +2,7 @@ const GeekPieBotTrainingData = () => {
   return (
     <div>
       <div>
-        <h1>Features:</h1>
+        <h1>Features -</h1>
         <p>
           Effortless Interactions: Engage customers seamlessly with GeekPie
           AI&apos;s chatbot, providing faster responses than traditional
@@ -24,7 +24,7 @@ const GeekPieBotTrainingData = () => {
         </p>
       </div>
       <div>
-        <h1>Services:</h1>
+        <h1>Services -</h1>
         <p>
           Customer Service Chatbots: We create highly customized customer
           service chatbots. We use PyTorch and LangChain frameworks along with
