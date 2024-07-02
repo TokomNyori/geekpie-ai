@@ -73,14 +73,12 @@ const GeekPieBotTrainingData = () => {
         </p>
       </div>
       <div>
-        <h1>Core members of GeekPie</h1>
-        <p>
-          <ul>
-            <li>CEO and Senior Software Engineer: Tokom Nyori (India)</li>
-            <li>COO and AI Engineer: Femi Omojuwa (Nigeria)</li>
-            <li>CTO and Senior Software Engineer: Karim (Lebanon)</li>
-          </ul>
-        </p>
+        <h1>Core Members of GeekPie-</h1>
+        <ul>
+          <li>Tokom Nyori (India) : CEO and Senior Software Engineer</li>
+          <li>Femi Omojuwa (Nigeria) : COO and AI Engineer</li>
+          <li>Karim Ammar (Lebanon) : CTO and Senior Software Engineer</li>
+        </ul>
       </div>
       <div>
         <h1>Contact</h1>
@@ -114,7 +112,10 @@ const GeekPieBotTrainingData = () => {
         <p>
           Contact us by phone, WhatsApp, email, or visit our office. Our GeekPie
           Bot can provide all relevant information and arrange a meeting after
-          asking just a few questions.
+          asking just a few simple questions, such as your email, name, and
+          purpose. After receiving the details, GeekPie Bot will send you a
+          confirmation email with the date and time. You can adjust the date and
+          time directly within the email.
         </p>
       </div>
       <div>
