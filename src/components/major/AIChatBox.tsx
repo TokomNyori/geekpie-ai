@@ -210,7 +210,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                       setDemoPrompt(true);
                     }}
                   >
-                    <IoCogOutline className="mb-2 text-[1.65rem] text-yellow-400 md:text-[1.35rem]" />
+                    <IoCogOutline className="mb-2 text-[1.75rem] text-yellow-400 md:text-[1.4rem]" />
                     What are the services offered by GeekPie AI?
                   </div>
                   <div
@@ -222,7 +222,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                       setDemoPrompt(true);
                     }}
                   >
-                    <IoCalendarOutline className="mb-2 text-2xl text-blue-400 md:text-xl" />
+                    <IoCalendarOutline className="mb-2 text-[1.5rem] text-blue-400 md:text-[1.25rem]" />
                     Can you arrange a meeting with the GeekPie team?
                   </div>
                 </div>
