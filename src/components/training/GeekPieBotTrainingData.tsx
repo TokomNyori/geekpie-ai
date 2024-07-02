@@ -3,53 +3,49 @@ const GeekPieBotTrainingData = () => {
     <div>
       <div>
         <h1>Features-</h1>
-        <h2>Effortless Interactions:</h2>
         <p>
-          Engage customers seamlessly with GeekPie AI&apos;s chatbot, providing
-          faster responses than traditional methods.{" "}
+          Effortless Interactions: Engage customers seamlessly with GeekPie
+          AI&apos;s chatbot, providing faster responses than traditional
+          methods.
         </p>
-        <h2>Precise Customer Support:</h2>
         <p>
-          Address customer queries efficiently with our AI chatbot, which
-          ensures prompt and accurate responses, reducing your workload.
+          Precise Customer Support: Address customer queries efficiently with
+          our AI chatbot, which ensures prompt and accurate responses, reducing
+          your workload.
         </p>
-        <h2>Customer Satisfaction Boost:</h2>
         <p>
-          Enhance customer experiences with our AI chatbot by delivering
-          personalized interactions consistently.
+          Customer Satisfaction Boost: Enhance customer experiences with our AI
+          chatbot by delivering personalized interactions consistently.
         </p>
-        <h2>Efficient Support:</h2>
         <p>
-          Empower your customer service team with GeekPie AI&apos;s chatbot,
-          which handles inquiries seamlessly, complementing human efforts.
+          Efficient Support: Empower your customer service team with GeekPie
+          AI&apos;s chatbot, which handles inquiries seamlessly, complementing
+          human efforts.
         </p>
       </div>
       <div>
         <h1>Services-</h1>
-        <h2>Customer Service Chatbots:</h2>
         <p>
-          We create highly customized customer service chatbots. We use PyTorch
-          and LangChain frameworks along with multiple large language models,
-          each assigned to specific tasks, to develop these chatbots. We
-          extensively fine-tune these models to ensure they are optimally suited
-          for each business&apos;s specific requirements.
+          Customer Service Chatbots: We create highly customized customer
+          service chatbots. We use PyTorch and LangChain frameworks along with
+          multiple large language models, each assigned to specific tasks, to
+          develop these chatbots. We extensively fine-tune these models to
+          ensure they are optimally suited for each business&apos;s specific
+          requirements.
         </p>
-        <h2>Sleek and Modern Chatbot UI:</h2>
         <p>
-          Whether you need a cyberpunk-style UI, a dark polished modern UI, or a
-          simple, attractive light UI, GeekPie AI can create it for you. We use
-          Next.js and React.js for web applications and React Native for mobile
-          applications.
+          Sleek and Modern Chatbot UI: Whether you need a cyberpunk-style UI, a
+          dark polished modern UI, or a simple, attractive light UI, GeekPie AI
+          can create it for you. We use Next.js and React.js for web
+          applications and React Native for mobile applications.
         </p>
-        <h2>Microservices:</h2>
         <p>
-          We provide various AI-based microservices, ranging from generating
-          intelligent conversations to processing data.
+          Microservices: We provide various AI-based microservices, ranging from
+          generating intelligent conversations to processing data.
         </p>
-        <h2>Maintenance:</h2>
         <p>
-          We also maintain systems, code, data, and trained models for our
-          clients.
+          Maintenance: We also maintain systems, code, data, and trained models
+          for our clients.
         </p>
       </div>
       <div>
@@ -112,12 +108,18 @@ const GeekPieBotTrainingData = () => {
         <p>
           Contact us by phone, WhatsApp, email, or visit our office. Our GeekPie
           Bot can provide all relevant information and arrange a meeting for you
-          by asking just three simple questions in the following markdown
-          format: Email: ______, Name:______, and Puropse of the meeting:______.
-          It`&apos;`s important to provide all three details to proceed with
-          scheduling the meeting. After receiving the details, GeekPie Bot will
-          send you a confirmation email with the date and time. You can adjust
-          the date and time directly within the email.
+          by asking just three simple questions: your name, email, and the
+          purpose of the meeting. It`&apos;`s important to provide all three
+          details to proceed with scheduling the meeting. After receiving the
+          details, GeekPie Bot will send you a confirmation email with the date
+          and time. The date will be automatically set for tomorrow at 3 PM IST,
+          but You can adjust the date and time directly within the email. The
+          three simple questions will be presented in a clear format:
+          <ul>
+            <li>Name:</li>
+            <li>Email:</li>
+            <li>Purpose:</li>
+          </ul>
         </p>
       </div>
       <div>

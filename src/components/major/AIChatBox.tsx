@@ -210,7 +210,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                       setDemoPrompt(true);
                     }}
                   >
-                    <IoCogOutline className="mb-2 text-2xl text-yellow-400 md:text-xl" />
+                    <IoCogOutline className="mb-2 text-[1.65rem] text-yellow-400 md:text-[1.35rem]" />
                     What are the services offered by GeekPie AI?
                   </div>
                   <div
@@ -257,9 +257,9 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 ) {
                   event.preventDefault();
                   handleSubmit(createMockFormEvent());
-                  if (inputRef && inputRef.current && isMobileView) {
-                    inputRef.current.blur(); // This will close the virtual keyboard
-                  }
+                  // if (inputRef && inputRef.current && isMobileView) {
+                  //   inputRef.current.blur(); // This will close the virtual keyboard
+                  // }
                 } else if (
                   event.key === "Enter" &&
                   !isInputEmpty(input) &&
