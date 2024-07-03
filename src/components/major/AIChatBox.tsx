@@ -1,7 +1,10 @@
+"use client";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/libs/utils";
 import { useChat, Message } from "ai/react";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { GoDependabot } from "react-icons/go";
 import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
 import TypingAni from "@/assets/jsons/typing.json";
@@ -14,6 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import { createMockFormEvent, createMockMouseEvent } from "@/fakers/fakers";
 import ChatMessages from "../minor/ChatMessages";
 import { isInputEmpty } from "@/helpers/isInputEmptyORwhiteSpace";
+import { HeroProps } from "./Hero";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -43,6 +47,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   const [isMobileView, setIsMobileView] = useState<Boolean>();
   const [demoPrompt, setDemoPrompt] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const aiChatBoxRef = useRef<HTMLDivElement>(null);
@@ -115,6 +120,42 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     };
   }, []);
 
+  const container = useRef(null);
+  gsap.registerPlugin(useGSAP);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
+
+      if (open && !isClosing) {
+        tl.fromTo(
+          ".geekpie_bot",
+          { y: 550, opacity: 1 },
+          { y: 0, opacity: 1, duration: 1.3 },
+        );
+      } else if (isClosing) {
+        tl.fromTo(
+          ".geekpie_bot",
+          { y: 0 },
+          {
+            y: 550,
+            opacity: 0,
+            duration: 1.3,
+            onComplete: () => {
+              onClose();
+              setIsClosing(false);
+            },
+          },
+        );
+      }
+    },
+    { scope: container, dependencies: [open, isClosing] },
+  );
+
+  function handleIsclosing() {
+    setIsClosing(true);
+  }
+
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
   console.log(messages);
@@ -122,6 +163,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   return (
     <div
+      ref={container}
       className={cn(
         "bottom-0 right-0 z-50 flex h-full w-full items-end justify-end backdrop-blur-sm",
         open ? "fixed" : "hidden",
@@ -129,12 +171,12 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     >
       <div
         className={cn(
-          "w-full pb-0.5 md:max-w-[38.25rem] md:p-1 lg:max-w-[34.25rem] lg:-translate-x-10 xl:-translate-x-40",
+          "geekpie_bot w-full pb-0.5 md:max-w-[38.25rem] md:p-1 lg:max-w-[34.25rem] lg:-translate-x-10 xl:-translate-x-40",
         )}
       >
         <button
           className="mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
-          onClick={onClose}
+          onClick={handleIsclosing}
         >
           <IoCloseCircleOutline />
         </button>
