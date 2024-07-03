@@ -130,15 +130,21 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       if (open && !isClosing) {
         tl.fromTo(
           ".geekpie_bot",
-          { y: 550, opacity: 1 },
+          { y: 575, opacity: 0.5 },
           { y: 0, opacity: 1, duration: 1.3 },
+        );
+
+        tl.fromTo(
+          ".geekpie_button",
+          { scale: 0 },
+          { scale: 1, opacity: 1, duration: 0.5 },
         );
       } else if (isClosing) {
         tl.fromTo(
           ".geekpie_bot",
           { y: 0 },
           {
-            y: 550,
+            y: 575,
             opacity: 0,
             duration: 1.3,
             onComplete: () => {
@@ -175,7 +181,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         )}
       >
         <button
-          className="mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
+          className="geekpie_button mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
           onClick={handleIsclosing}
         >
           <IoCloseCircleOutline />
