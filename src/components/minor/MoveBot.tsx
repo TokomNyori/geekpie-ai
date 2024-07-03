@@ -39,9 +39,9 @@ const MoveBot = () => {
             animationData={Orb}
             loop={true}
           />
-          <div className="absolute -bottom-9 left-0 right-0 hidden w-full justify-center rounded-lg bg-gray-50/5 py-0.5 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:flex group-hover:opacity-100">
+          {/* <div className="absolute -bottom-9 left-0 right-0 hidden w-full justify-center rounded-lg bg-gray-50/5 py-0.5 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:flex group-hover:opacity-100">
             Chat
-          </div>
+          </div> */}
         </div>
       </motion.div>
       <AIChatBox open={openChatBox} onClose={() => setOpenChatBox(false)} />
