@@ -5,6 +5,7 @@ import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/libs/utils";
 import { useChat, Message } from "ai/react";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { LuMinusCircle } from "react-icons/lu";
 import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
 import TypingAni from "@/assets/jsons/typing.json";
@@ -143,14 +144,14 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         tl.fromTo(
           ".geekpie_button",
           { scale: 1 },
-          { scale: 0, opacity: 0, duration: 0.5 },
+          { scale: 0, opacity: 0, duration: 0.3 },
         );
 
         tl.fromTo(
           ".geekpie_bot",
           { y: 0 },
           {
-            y: 610,
+            y: 620,
             duration: 1.3,
             onComplete: () => {
               onClose();
@@ -182,14 +183,14 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     >
       <div
         className={cn(
-          "geekpie_bot w-full pb-0.5 md:max-w-[38.25rem] md:p-1 lg:max-w-[34.25rem] lg:-translate-x-10 xl:-translate-x-40",
+          "geekpie_bot w-full pb-0.5 md:max-w-[38.25rem] md:p-1 lg:max-w-[34.25rem] xl:-translate-x-40",
         )}
       >
         <button
-          className="geekpie_button mb-1 ms-auto block rounded-full text-5xl backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:translate-x-12 xl:translate-y-14"
+          className="geekpie_button mb-2 mr-1 ms-auto block rounded-full text-[2.7rem] backdrop-blur-[12px] transition-colors duration-300 ease-in-out hover:text-red-500 xl:mb-0 xl:mr-0 xl:translate-x-12 xl:translate-y-12"
           onClick={handleIsclosing}
         >
-          <IoCloseCircleOutline />
+          <LuMinusCircle />
         </button>
         <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[45.5rem] lg:h-[37.5rem]">
           {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
