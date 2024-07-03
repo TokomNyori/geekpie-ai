@@ -141,11 +141,16 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         );
       } else if (isClosing) {
         tl.fromTo(
+          ".geekpie_button",
+          { scale: 1 },
+          { scale: 0, opacity: 0, duration: 0.5 },
+        );
+
+        tl.fromTo(
           ".geekpie_bot",
           { y: 0 },
           {
             y: 610,
-            opacity: 0,
             duration: 1.3,
             onComplete: () => {
               onClose();
