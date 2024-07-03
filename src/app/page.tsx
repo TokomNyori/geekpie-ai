@@ -22,7 +22,7 @@ export default function Home() {
       <Showcase />
       <Integration />
       <CallToAction />
-      {/* <MoveBot/> */}
+      <MoveBot />
     </div>
   );
 }
