@@ -8,6 +8,7 @@ import { HeroProps } from "../major/Hero";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import StarGrid from "../svg-components/StarGrid";
 import ChatBoxTrigger from "../minor/ChatBoxTrigger";
+import MoveBot from "../minor/MoveBot";
 
 type GsapAnimatedContentProps = {
   props: HeroProps;
@@ -67,6 +68,13 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
         { scale: 1, opacity: 1, duration: 1.3 },
         "-=0.7",
       );
+
+      // targeting the hero__heading
+      tl.fromTo(
+        ".fixed_bot",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1 },
+      );
     },
     { scope: container },
   );
@@ -107,6 +115,7 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
           alt={`${props.alt}`}
         />
       </div>
+      <MoveBot />
     </div>
   );
 };

@@ -25,7 +25,7 @@ const MoveBot = () => {
         // dragElastic={0.3}
         // onDragStart={() => setIsDragging(true)}
         // onDragEnd={() => setIsDragging(false)}
-        className="fixed bottom-5 right-5 z-30 md:right-7"
+        className="fixed_bot fixed bottom-5 right-5 z-30 md:right-7"
         // whileDrag={{ scale: 1.05 }}
         // animate={{ y: 0, x: 0 }}
       >
