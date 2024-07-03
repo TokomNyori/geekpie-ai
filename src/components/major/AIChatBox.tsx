@@ -144,7 +144,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           ".geekpie_bot",
           { y: 0 },
           {
-            y: 600,
+            y: 610,
             opacity: 0,
             duration: 1.3,
             onComplete: () => {
