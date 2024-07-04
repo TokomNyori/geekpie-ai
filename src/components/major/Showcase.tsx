@@ -16,8 +16,8 @@ const Showcase = () => {
           Your workflow.
         </h1>
       </TextPopOutAnimation>
-      <div className="mt-16 grid items-center gap-8 rounded-xl border border-blue-50/20 bg-gradient-to-b from-slate-50/15 to-slate-50/5 px-8 py-8 backdrop-blur-sm lg:grid-cols-3 lg:gap-0 lg:py-12">
-        <div>
+      <div className="mt-16 grid items-center gap-8 rounded-xl border border-blue-50/20 bg-gradient-to-b from-slate-50/15 to-slate-50/5 py-8 backdrop-blur-sm md:px-8 lg:grid-cols-3 lg:gap-0 lg:py-12">
+        <div className="px-6 md:px-0">
           <div className="w-fit rounded-lg bg-blue-500/35 p-4 text-3xl">
             <PiGear className="" />
           </div>
@@ -42,16 +42,18 @@ const Showcase = () => {
             <ButtonLink className="mt-6">Get Started</ButtonLink>
           </InputDrawer>
         </div>
-        <Image
-          src="/images/showcase-image1.png"
-          width={700}
-          height={700}
-          alt="showcase"
-          className={clsx(
-            `opacity-90 shadow-2xl lg:col-span-2 lg:pt-0`,
-            `rounded-lg border border-gray-50/15 lg:-order-1 lg:translate-x-[-15%]`,
-          )}
-        />
+        <div className="px-2 md:px-0 lg:-order-1 lg:translate-x-[-14.5%] lg:col-span-2 lg:pt-0 opacity-90 ">
+          <Image
+            src="/images/showcase-image1.png"
+            width={700}
+            height={700}
+            alt="showcase"
+            className={clsx(
+              `shadow-2xl`,
+              `rounded-lg border border-gray-50/15 `,
+            )}
+          />
+        </div>
       </div>
     </Bounded>
   );
