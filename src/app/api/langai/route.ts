@@ -9,9 +9,7 @@ import { getVectorStrore } from '@/libs/astradb';
 import { GeminiMessage, MeetingResponse } from '@/helpers/typeScriptTypes';
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retriever";
-import nodemailer from 'nodemailer';
-const geekpieEmail = process.env.NODEMAILER_MAIL_SENDER
-const pass = process.env.ZOHO_APP_PASS_GEEKPIE_AI
+import { MailSender } from "@/helpers/helperFun";
 
 
 export async function POST(req: NextRequest) {
@@ -193,51 +191,27 @@ async function detectMeetingDetails(messages: string[]) {
 async function sendEmailToCustomer(details: MeetingResponse) {
     if (details.details) {
         const { name, email, purpose } = details.details;
-        const customerName = name
-        const customerEmail = email
-        const customerPurpose = purpose
-        const meetingDateTime = "Tomorrow at 3 PM IST";
-        const message = `
-Dear ${customerName},<br/><br/>
-Thank you for scheduling a meeting with the GeekPie team. We are excited to discuss your needs and how we can assist you.<br/><br/>
-<b>Meeting Details:</b><br/>
-- <b>Name:</b> ${customerName}<br/>
-- <b>Purpose:</b> ${customerPurpose}<br/>
-- <b>Date and Time:</b> ${meetingDateTime}<br/><br/>
-If you need to make any changes to the date or time of the meeting, please feel free to reply to this email, and we will be happy to accommodate your request.<br/><br/>
-We look forward to speaking with you.
-`;
 
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.zoho.in',
-            port: 465,
-            secure: true,
-            auth: {
-                user: geekpieEmail,
-                pass: pass,
-            }
-        })
+        // Data to be sent to K3 Gas Service
+        const dataToUser = {
+            customerName: name,
+            customerEmail: email,
+            customerPurpose: purpose,
+            meetingDateTime: "Tomorrow at 3 PM IST",
+            subject: "Meeting Confirmation with GeekPie Team",
+            mailType: "meeting",
+        };
 
         try {
-            const mailOptions = {
-                from: `"GeekPie Software Company" <${geekpieEmail}>`,
-                to: customerEmail,
-            };
-
-            const mail = await transporter.sendMail({
-                ...mailOptions,
-                subject: "Meeting Confirmation with GeekPie Team",
-                html: `
-                <div style="padding: 12px 16px; background-color: #ffffff; color: #000000; border-radius: 10px; font-size: 16px;">
-                    <p style="margin: 0;">${message}</p>
-                    <br/>
-                    <p style="margin: 0;">Best regards,</p>
-                    <p style="margin: 0; font-weight: bold;">GeekPie Software Company</p>
-                    <p style="margin: 0;">You dream, we create!</p>
-                </div>`
+            const res = await MailSender({
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: dataToUser,
             });
         } catch (error) {
-            console.error('Error occurred while sending email:', error);
+            console.error(error)
         }
     }
 }

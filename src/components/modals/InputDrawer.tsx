@@ -60,6 +60,8 @@ export default function InputDrawer({
     email: getStartedForm.email,
     mobile: getStartedForm.mobile,
     service: getStartedForm.service,
+    subject: "New Service Inquiry Notification for GeekPie AI",
+    mailType: "service",
   };
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -115,7 +117,7 @@ export default function InputDrawer({
         duration: 4000,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Request failed. Please try again.");
     } finally {
       setSendingReq(false);
