@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
             chat_history: chatHistory
         })
 
-        meetingDetector(messages)
+        await meetingDetector(messages)
 
         return new StreamingTextResponse(stream)
 
