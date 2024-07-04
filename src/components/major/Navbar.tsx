@@ -6,6 +6,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { useState } from "react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
+import InputDrawer from "../modals/InputDrawer";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -63,7 +64,16 @@ const Navbar = () => {
             >
               Features
             </Link>
-            <ButtonLink onClick={() => setOpen(false)}>Get Started</ButtonLink>
+            <InputDrawer
+              drawerTitle="Get Started"
+              servicesOpt={{
+                serviceOne: "Customer Service Chatbot",
+                serviceTwo: "Chatbot UI Only",
+                serviceThree: "AI-based Microservices",
+              }}
+            >
+              <ButtonLink onClick={() => setOpen(false)}>Get Started</ButtonLink>
+            </InputDrawer>
           </div>
         </div>
 
@@ -78,7 +88,16 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <ButtonLink>Get Started</ButtonLink>
+            <InputDrawer
+              drawerTitle="Get Started"
+              servicesOpt={{
+                serviceOne: "Customer Service Chatbot",
+                serviceTwo: "Chatbot UI Only",
+                serviceThree: "AI-based Microservices",
+              }}
+            >
+              <ButtonLink>Get Started</ButtonLink>
+            </InputDrawer>
           </li>
         </ul>
       </div>

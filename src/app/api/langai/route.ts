@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
 
 
 // Meeting Mail  functions
-function meetingDetector(msgs: GeminiMessage[]) {
+async function meetingDetector(msgs: GeminiMessage[]) {
     const meetingRegex = /\b(meeting|meting|meetin|meetin|meetting)\b/i;
     const human = msgs
         .filter((m: GeminiMessage) => m.role === "user" && typeof m.content === 'string')
@@ -128,7 +128,7 @@ function meetingDetector(msgs: GeminiMessage[]) {
 
     console.log(ai)
     if (keywordFound && confirmAI) {
-        detectMeetingDetails(human)
+        await detectMeetingDetails(human)
         console.log("CAAAALLLLIINNNGGGGG detectMeetingDetails!")
     } else {
         console.log("NOOOOOO NNEEDDD TTOOOO detectMeetingDetails!")

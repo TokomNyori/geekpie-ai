@@ -5,6 +5,7 @@ import Integration from "@/components/major/Integration";
 import Showcase from "@/components/major/Showcase";
 import MoveBot from "@/components/minor/MoveBot";
 import Image from "next/image";
+import { Toaster } from 'react-hot-toast';
 
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
       <Showcase />
       <Integration />
       <CallToAction />
-      {/* <MoveBot /> */}
+      < Toaster/>
     </div>
   );
 }

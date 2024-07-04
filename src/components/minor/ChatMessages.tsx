@@ -30,7 +30,7 @@ export default function ChatMessages({
       )}
       <div
         className={cn(
-          "overflow-x-auto rounded-lg border bg-zinc-900 px-3 py-2",
+          "overflow-x-auto rounded-lg border bg-zinc-900 px-3 py-3",
           aiMessages
             ? "mr-3 rounded-tl-none border-none text-start"
             : "ml-12 rounded-tr-none border-none text-start",

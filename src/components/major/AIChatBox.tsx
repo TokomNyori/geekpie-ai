@@ -132,7 +132,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         tl.fromTo(
           ".geekpie_bot",
           { y: 600, opacity: 1 },
-          { y: 0, opacity: 1, duration: 1.3 },
+          { y: 0, opacity: 1, duration: 1 },
         );
 
         tl.fromTo(
@@ -152,7 +152,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
           { y: 0 },
           {
             y: 620,
-            duration: 1.3,
+            duration: 1,
             onComplete: () => {
               onClose();
               setIsClosing(false);
