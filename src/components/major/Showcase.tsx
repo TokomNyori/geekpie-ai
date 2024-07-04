@@ -4,6 +4,7 @@ import ButtonLink from "../minor/ButtonLink";
 import clsx from "clsx";
 import { PiGear } from "react-icons/pi";
 import TextPopOutAnimation from "../animations/TextPopOutAnimation";
+import InputDrawer from "../modals/InputDrawer";
 
 const Showcase = () => {
   return (
@@ -30,7 +31,16 @@ const Showcase = () => {
             you&apos;re not just competing; you&apos;re dominating. Setting you
             apart as a leader.
           </p>
-          <ButtonLink className="mt-6">Get Started</ButtonLink>
+          <InputDrawer
+            drawerTitle="Get Started"
+            servicesOpt={{
+              serviceOne: "Customer Service Chatbot",
+              serviceTwo: "Chatbot UI Only",
+              serviceThree: "AI-based Microservices",
+            }}
+          >
+            <ButtonLink className="mt-6">Get Started</ButtonLink>
+          </InputDrawer>
         </div>
         <Image
           src="/images/showcase-image1.png"

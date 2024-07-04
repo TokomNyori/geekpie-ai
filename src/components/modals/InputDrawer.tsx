@@ -128,7 +128,7 @@ export default function InputDrawer({
         {children}
       </DrawerTrigger>
       <DrawerContent
-        className={`priority-z-index min-h-[65vh] border-0 bg-black text-gray-100`}
+        className={`priority-z-index min-h-[55vh] border-0 bg-black text-gray-100`}
       >
         <div className="mx-auto flex w-full max-w-lg flex-col justify-between">
           <DrawerHeader className="relative flex items-center justify-start border-b border-zinc-500 px-4 pb-2 pt-4 md:px-0">
