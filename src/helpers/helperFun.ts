@@ -16,3 +16,11 @@ export async function MailSender({ method, headers, body }: MailSenderParams) {
 
     return res.json()
 }
+
+
+export const scrollToSection = (sectionId: string): void => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};

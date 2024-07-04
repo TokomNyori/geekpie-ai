@@ -7,10 +7,19 @@ import { useState } from "react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import InputDrawer from "../modals/InputDrawer";
+import { scrollToSection } from "@/helpers/helperFun";
+import { setTimeout } from "timers";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  function combineSetOpenNSectionScroll() {
+    setOpen(false);
+    setTimeout(() => {
+      scrollToSection("features");
+    }, 500);
+  }
 
   return (
     <nav aria-label="Main" className="p-4 md:p-4">
@@ -60,7 +69,7 @@ const Navbar = () => {
             <Link
               href={`#features`}
               className="block px-3 text-3xl first:mt-10"
-              onClick={() => setOpen(false)}
+              onClick={combineSetOpenNSectionScroll}
             >
               Features
             </Link>
@@ -72,7 +81,9 @@ const Navbar = () => {
                 serviceThree: "AI-based Microservices",
               }}
             >
-              <ButtonLink onClick={() => setOpen(false)}>Get Started</ButtonLink>
+              <ButtonLink onClick={() => setOpen(false)}>
+                Get Started
+              </ButtonLink>
             </InputDrawer>
           </div>
         </div>
@@ -82,6 +93,7 @@ const Navbar = () => {
           <li>
             <Link
               href={`#features`}
+              onClick={() => scrollToSection("features")}
               className="inline-flex min-h-11 items-center"
             >
               Features

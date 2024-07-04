@@ -10,7 +10,15 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-center gap-4 border-t border-slate-600 px-8 py-7 pb-16">
+    <footer className="flex flex-col items-center justify-center gap-4 border-t border-slate-600 px-8 py-10 pb-20">
+      <Link href={"/"} className="flex items-center justify-start gap-3">
+        <LogoMark className="w-[2.35rem]" />
+        <span className="text-3xl">
+          GeekPie
+          <sup className="ml-1 text-lg italic text-yellow-400">ai</sup>
+        </span>
+        <span className="sr-only">GeekPie Home Page</span>
+      </Link>
       <nav aria-label="Footer">
         <ul className="flex gap-3">
           <li>
@@ -54,15 +62,6 @@ const Footer = () => {
           </li>
         </ul>
       </nav>
-
-      <Link href={"/"} className="flex items-center justify-start gap-3">
-        <LogoMark className="w-[2.35rem]" />
-        <span className="text-3xl">
-          GeekPie
-          <sup className="ml-1 text-lg italic text-yellow-400">ai</sup>
-        </span>
-        <span className="sr-only">GeekPie Home Page</span>
-      </Link>
     </footer>
   );
 };

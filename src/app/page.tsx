@@ -19,7 +19,9 @@ export default function Home() {
         imageSrcMobile="/images/geekpieaihero-sm.jpg"
         alt="Hero Image"
       />
-      <Features />
+      <div id="features">
+        <Features />
+      </div>
       <Showcase />
       <Integration />
       <CallToAction />
