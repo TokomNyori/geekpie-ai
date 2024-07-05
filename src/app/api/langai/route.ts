@@ -68,6 +68,7 @@ export async function POST(req: NextRequest) {
                 "Handle irrelevant or off-topic queries with friendly apologies but do not entertain further. Be consistent in handling irrelevant or off-topic queries in the entire conversation." +
                 "Specifically, avoid providing answers to general off-topic questions such as 'how to write a Python program'." +
                 "Identify and convert all links to the appropriate Markdown format." +
+                "Always include the word 'Great!' when sending the meeting confirmation response to the user once the meeting is confirmed." +
                 "Greet users in a friendly way. If users greet you, greet them back warmly." +
                 "Answer the user's questions based on the below context.\n\n" +
                 "Context:\n{context}"
