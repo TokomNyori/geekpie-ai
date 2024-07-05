@@ -80,6 +80,9 @@ export async function POST(req: NextRequest) {
                 </div>`
         });
 
+        // console.log('NOODEEEMAILER-----------')
+        // console.log(mail)
+
         return NextResponse.json(
             {
                 success: true,

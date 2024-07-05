@@ -9,7 +9,6 @@ import { getVectorStrore } from '@/libs/astradb';
 import { GeminiMessage, MeetingResponse } from '@/helpers/typeScriptTypes';
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retriever";
-import { MailSender } from "@/helpers/helperFun";
 
 
 export async function POST(req: NextRequest) {
@@ -93,8 +92,6 @@ export async function POST(req: NextRequest) {
             chat_history: chatHistory
         })
 
-        await meetingDetector(messages)
-
         return new StreamingTextResponse(stream)
 
     } catch (error) {
@@ -102,116 +99,5 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             error: "An error occurred while processing the request. Please try again."
         }, { status: 500 })
-    }
-}
-
-
-
-
-// Meeting Mail  functions
-async function meetingDetector(msgs: GeminiMessage[]) {
-    const meetingRegex = /\b(meeting|meting|meetin|meetin|meetting)\b/i;
-    const human = msgs
-        .filter((m: GeminiMessage) => m.role === "user" && typeof m.content === 'string')
-        .map((m: GeminiMessage) => m.content);
-
-    const ai = msgs
-        .filter((m: GeminiMessage) => m.role === "assistant" && typeof m.content === 'string')
-        .map((m: GeminiMessage) => m.content);
-
-    const aiLastMessage = ai.length > 0 ? ai[ai.length - 1].toLowerCase() : '';
-
-    const keywordFound = human.some(content => meetingRegex.test(content.toLowerCase()));
-    const confirmAI = aiLastMessage.includes("meeting")
-
-    console.log(ai)
-    if (keywordFound && confirmAI) {
-        await detectMeetingDetails(human)
-        console.log("CAAAALLLLIINNNGGGGG detectMeetingDetails!")
-    } else {
-        console.log("NOOOOOO NNEEDDD TTOOOO detectMeetingDetails!")
-    }
-}
-
-
-
-async function detectMeetingDetails(messages: string[]) {
-
-    console.log(messages)
-    const GEMINI_API_KEY = process.env.GOOGLE_API_KEY
-    const lastMessage = messages[messages.length - 1]
-
-    if (!GEMINI_API_KEY) {
-        return NextResponse.json({
-            error: "GEMINI API KEY is not defined in the environment variables."
-        }, { status: 500 })
-    }
-
-    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY)
-    const aiMailmodel = genAI.getGenerativeModel(
-        {
-            model: "gemini-1.5-flash",
-            systemInstruction: `You are a highly intelligent AI model that excels at detecting meeting details accurately and efficiently. When provided with a chat string, your task is to identify if the message contains the necessary details for scheduling a meeting, including the name, email, and purpose of the meeting. If you detect all three details, respond with {\"meeting\": true, \"details\": {\"name\": \"name\", \"email\": \"email\", \"purpose\": \"purpose\"}}. If any detail is missing, respond with {\"meeting\": false}. Make sure you detect it properly. The purpose of the meeting could be topics like developing a chatbot, discussing microservices, or inquiring about various services. For example, given a string like "Hi, how are you?", you should analyze and determine the presence of the required meeting details.`
-        }
-    )
-
-    try {
-        const response = await aiMailmodel.generateContent(lastMessage)
-        const stringResponse = response.response.text()
-        console.log('MEEEETTTTTTTTTIIIINNNNGGGGG!!!!!!!!---');
-
-        // Ensure that stringResponse is a valid JSON string
-        const trimmedResponse = stringResponse.trim();
-
-        // Removing any unexpected characters like backticks
-        const cleanedResponse = trimmedResponse.replace(/```json|```/g, '').trim();
-
-        if (cleanedResponse.startsWith('{') && cleanedResponse.endsWith('}')) {
-            try {
-                const jsonObject: MeetingResponse = JSON.parse(cleanedResponse);
-                console.log(jsonObject);
-                if (jsonObject.meeting === true) {
-                    console.log('Meeting details detected:', jsonObject);
-                    await sendEmailToCustomer(jsonObject);
-                } else {
-                    console.log('Meeting details not detected.');
-                }
-            } catch (jsonError) {
-                console.error('Error parsing JSON:', jsonError);
-            }
-        } else {
-            console.error('Response is not valid JSON:', cleanedResponse);
-        }
-    } catch (error) {
-        console.error('Error occurred while detecting meeting details:', error);
-    }
-}
-
-
-async function sendEmailToCustomer(details: MeetingResponse) {
-    if (details.details) {
-        const { name, email, purpose } = details.details;
-
-        // Data to be sent to K3 Gas Service
-        const dataToUser = {
-            customerName: name,
-            customerEmail: email,
-            customerPurpose: purpose,
-            meetingDateTime: "Tomorrow at 3 PM IST",
-            subject: "Meeting Confirmation with GeekPie Team",
-            mailType: "meeting",
-        };
-
-        try {
-            const res = await MailSender({
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: dataToUser,
-            });
-        } catch (error) {
-            console.error(error)
-        }
     }
 }

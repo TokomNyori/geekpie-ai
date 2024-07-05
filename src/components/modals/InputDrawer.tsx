@@ -23,7 +23,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { Input } from "../ui/input";
 import toast from "react-hot-toast";
 import PuffLoader from "react-spinners/PuffLoader";
-import { MailSender } from "@/helpers/helperFun";
+import { mailSender } from "@/helpers/helperFun";
 
 type ServicesType = {
   serviceOne: string;
@@ -105,7 +105,7 @@ export default function InputDrawer({
     setSendingReq(true);
 
     try {
-      const res = await MailSender({
+      const res = await mailSender({
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,6 +19,13 @@ import { createMockFormEvent, createMockMouseEvent } from "@/fakers/fakers";
 import ChatMessages from "../minor/ChatMessages";
 import { isInputEmpty } from "@/helpers/isInputEmptyORwhiteSpace";
 import { HeroProps } from "./Hero";
+import {
+  detectMeetingDetails,
+  mailSender,
+  meetingDetector,
+} from "@/helpers/helperFun";
+import { MeetingDetails } from "@/helpers/typeScriptTypes";
+import toast from "react-hot-toast";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -94,7 +101,6 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     //console.log(height)
     if (width < 641) {
       setIsMobileView(true);
-      console.log(`First Window width: ${width}, Mobile view: ${width < 641}`);
     } else {
       setIsMobileView(false);
     }
@@ -108,7 +114,6 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       const width = window.innerWidth;
       if (width < 641) {
         setIsMobileView(true);
-        console.log(`Window width: ${width}, Mobile view: ${width < 641}`);
       } else {
         setIsMobileView(false);
       }
@@ -120,6 +125,12 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      handleMeetingMail();
+    }
+  }, [messages, isLoading]);
 
   const container = useRef(null);
   gsap.registerPlugin(useGSAP);
@@ -164,14 +175,60 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     { scope: container, dependencies: [open, isClosing] },
   );
 
+  async function handleMeetingMail() {
+    const res = await meetingDetector(messages);
+
+    if (res) {
+      try {
+        const resTwo = await detectMeetingDetails({
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            messages: messages,
+          },
+        });
+
+        const detailResponse: MeetingDetails = resTwo.body;
+        console.log(detailResponse);
+
+        const dataToUser = {
+          customerName: detailResponse.name,
+          customerEmail: detailResponse.email,
+          customerPurpose: detailResponse.purpose,
+          meetingDateTime: "Tomorrow at 3 PM IST",
+          subject: "Meeting Confirmation with GeekPie Team",
+          mailType: "meeting",
+        };
+
+        try {
+          const res = await mailSender({
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: dataToUser,
+          });
+          toast.success("Confirmation Email Sent");
+        } catch (error) {
+          console.error(error);
+          toast.success("Oops! Couldn't Send Confirmation Email.");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
   function handleIsclosing() {
     setIsClosing(true);
   }
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
-  console.log(messages);
-  console.log(input);
+  // console.log(messages);
+  // console.log(input);
 
   return (
     <div
@@ -203,7 +260,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             ))}
 
             {isLoading && isLastMessageByUser && (
-              <div className="mb-3 flex w-full items-start justify-start text-gray-100">
+              <div className="mb-4 flex w-full items-start justify-start text-gray-100">
                 <div className="-ml-0.5 -mt-0.5 mr-1.5 w-[1.8rem] flex-none">
                   {/* <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div> */}
                   <Lottie
@@ -214,11 +271,11 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 </div>
                 <div
                   className={cn(
-                    "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border-none bg-zinc-900 px-3 py-2 pr-10 text-start",
+                    "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border-none bg-zinc-900 px-3 py-3 pr-10 text-start",
                   )}
                 >
                   Thinking
-                  <div className="absolute right-2.5 top-0 mt-2.5 w-[1.5rem]">
+                  <div className="absolute right-2.5 top-0 mt-3.5 w-[1.5rem]">
                     <Lottie
                       className="rounded-full"
                       animationData={TypingAni}
@@ -258,7 +315,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                 </p>
                 <div className="mt-7 flex items-stretch justify-center gap-3 text-start">
                   <div
-                    className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15"
+                    className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-500/10"
                     onClick={(event) => {
                       setInput("What are the services offered by GeekPie AI?");
                       setDemoPrompt(true);
@@ -268,7 +325,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                     What are the services offered by GeekPie AI?
                   </div>
                   <div
-                    className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-400/15"
+                    className="w-1/2 cursor-pointer rounded-xl border border-gray-500/50 p-3 transition-all duration-150 ease-in-out hover:bg-gray-500/10"
                     onClick={(event) => {
                       setInput(
                         "Can you arrange a meeting with the GeekPie team?",

@@ -149,6 +149,12 @@ const GeekPieBotTrainingData = () => {
           applications and microservices.
         </p>
       </div>
+      <div>
+        What keyword does GeekPie Bot include after sending the confirmation
+        mail in the response? Answer: The GeekPie Bot always includes the word
+        &apos;Great!&apos; as a keyword after sending the confirmation email in
+        the response.
+      </div>
     </div>
   );
 };
