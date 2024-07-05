@@ -212,10 +212,12 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             },
             body: dataToUser,
           });
-          toast.success("Confirmation Email Sent", { duration: 4000 });
+          toast.success("Meeting Confirmed! Confirmation Email Sent", {
+            duration: 5000,
+          });
         } catch (error) {
           console.error(error);
-          toast.success("Oops! Couldn't Send Confirmation Email.");
+          toast.error("Oops! Couldn't Send Confirmation Email.");
         } finally {
           setIsSendingMail(false);
         }
@@ -415,7 +417,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             speedMultiplier={1}
           />
           <span className="animate-pulse text-xl capitalize tracking-widest text-gray-100 md:text-2xl">
-            Scheduling Meeting...
+            Confirming Meeting...
           </span>
         </div>
       </div>
