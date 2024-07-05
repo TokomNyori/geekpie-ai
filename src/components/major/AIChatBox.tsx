@@ -26,6 +26,7 @@ import {
 } from "@/helpers/helperFun";
 import { MeetingDetails } from "@/helpers/typeScriptTypes";
 import toast from "react-hot-toast";
+import PuffLoader from "react-spinners/PuffLoader";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -52,7 +53,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   } = useChat({
     api: "/api/langai",
   });
-
+  const [isSendingMail, setIsSendingMail] = useState<Boolean>(false);
   const [isMobileView, setIsMobileView] = useState<Boolean>();
   const [demoPrompt, setDemoPrompt] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -179,6 +180,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     const res = await meetingDetector(messages);
 
     if (res) {
+      setIsSendingMail(true);
       try {
         const resTwo = await detectMeetingDetails({
           method: "POST",
@@ -210,13 +212,16 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             },
             body: dataToUser,
           });
-          toast.success("Confirmation Email Sent");
+          toast.success("Confirmation Email Sent", { duration: 4000 });
         } catch (error) {
           console.error(error);
           toast.success("Oops! Couldn't Send Confirmation Email.");
+        } finally {
+          setIsSendingMail(false);
         }
       } catch (error) {
         console.error(error);
+        setIsSendingMail(false);
       }
     }
   }
@@ -394,6 +399,24 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               )}
             </button>
           </form>
+        </div>
+      </div>
+
+      <div
+        className={`${isSendingMail ? "z-60 fixed left-0 top-0 h-full w-full backdrop-blur-sm" : "hidden"}`}
+      >
+        <div className="flex h-full w-full flex-col items-center justify-center gap-8">
+          <PuffLoader
+            color="#3B82F6CC"
+            //cssOverride={override}
+            size={230}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            speedMultiplier={1}
+          />
+          <span className="animate-pulse text-xl capitalize tracking-widest text-gray-100 md:text-2xl">
+            Scheduling Meeting...
+          </span>
         </div>
       </div>
     </div>

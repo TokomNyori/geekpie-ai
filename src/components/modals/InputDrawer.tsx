@@ -233,7 +233,7 @@ export default function InputDrawer({
       </DrawerContent>
 
       <div
-        className={`${sendingReq ? "fixed left-0 top-0 z-50 h-full w-full backdrop-blur-sm" : "hidden"}`}
+        className={`${sendingReq ? "z-60 fixed left-0 top-0 h-full w-full backdrop-blur-sm" : "hidden"}`}
       >
         <div className="flex h-full w-full flex-col items-center justify-center gap-8">
           <PuffLoader
