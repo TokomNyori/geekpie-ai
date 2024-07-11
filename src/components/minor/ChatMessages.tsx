@@ -5,6 +5,7 @@ import Orb from "@/assets/jsons/orb1.json";
 import { Message } from "ai/react";
 import { cn } from "@/libs/utils";
 import { Button } from "../ui/button";
+import { useEffect } from "react";
 
 type MessageProps = {
   message: Message;
@@ -13,17 +14,25 @@ type MessageProps = {
   loadMeetingModal?: boolean;
   meetingDetailsSubmitted?: boolean;
   setLoadMeetingModal: React.Dispatch<boolean>;
+  scrollRef?: React.RefObject<HTMLDivElement>;
 };
 
 export default function ChatMessages({
-  message: { role, content, id },
+  message: { role, id, content },
   showMeetingBtn,
   showButtonInThisMessage,
   setLoadMeetingModal,
   meetingDetailsSubmitted,
+  scrollRef,
 }: MessageProps) {
   const aiMessages = role === "assistant";
   const idStatus = id === "loading";
+
+  useEffect(() => {
+    if (scrollRef?.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [showButtonInThisMessage, scrollRef]);
 
   console.log({
     aiMessages,
@@ -78,13 +87,13 @@ export default function ChatMessages({
         </ReactMarkDown>
         {aiMessages && showMeetingBtn && showButtonInThisMessage && (
           <Button
-            className="mb-2 mt-2 bg-black hover:bg-black hover:brightness-125 disabled:bg-zinc-500 disabled:text-zinc-950"
+            className="mb-1 mt-3 animate-pulse bg-green-400 text-[1rem] text-zinc-950 hover:bg-green-400 hover:brightness-125 disabled:animate-none disabled:bg-zinc-500"
             disabled={meetingDetailsSubmitted}
             onClick={() => setLoadMeetingModal(true)}
           >
             {meetingDetailsSubmitted
-              ? "Details submitted successfully!"
-              : "Click here to enter meeting details"}
+              ? "Meeting details submitted!"
+              : "Click to enter meeting details"}
           </Button>
         )}
       </div>

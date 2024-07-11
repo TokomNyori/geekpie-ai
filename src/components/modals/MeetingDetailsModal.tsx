@@ -16,6 +16,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { MeetingDetails } from "@/helpers/typeScriptTypes";
+import toast from "react-hot-toast";
 
 type MeetingDetailsModalPropd = {
   loadMeetingModal: boolean;
@@ -122,7 +123,11 @@ const MeetingDetailsModal = ({
       [name]: value,
     }));
 
-    value !== "voice call" ? setIsVoiceCall(false) : setIsVoiceCall(true);
+    if (value === "Voice Call") {
+      setIsVoiceCall(true);
+    } else if (value !== "Voice Call" && name === "mode") {
+      setIsVoiceCall(false);
+    }
   };
 
   function handleIsclosing() {
@@ -131,6 +136,32 @@ const MeetingDetailsModal = ({
 
   function handleMeetingDetailSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    if (
+      !meetingForm.firstName ||
+      !meetingForm.lastName ||
+      !meetingForm.email ||
+      !meetingForm.service ||
+      !meetingForm.mode ||
+      !meetingForm.meetingTime
+    ) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
+    if (meetingForm.mode === "Voice Call" && !meetingForm.mobile) {
+      toast.error("Mobile number is required for voice call mode");
+      return;
+    }
+
+    if (
+      meetingForm.mode === "Voice Call" &&
+      meetingForm.mobile?.length !== 10
+    ) {
+      toast.error("Mobile number should be 10 digits");
+      return;
+    }
+
     setMeetingDetails(meetingForm);
     handleIsclosing();
     setMeetingDetailsSubmitted(true);
@@ -152,11 +183,11 @@ const MeetingDetailsModal = ({
       className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
       ref={meetingModal}
     >
-      <div className="meeting_box flex w-full flex-col items-center justify-center rounded-xl border border-gray-500/50 bg-zinc-950 px-4 pb-6 pt-3 md:w-[95%]">
+      <div className="meeting_box flex w-full flex-col items-center justify-center rounded-xl border border-gray-500/50 bg-zinc-950 px-4 pb-7 pt-5 md:w-[95%]">
         <div className="flex w-full items-center justify-between">
           <div className="text-lg">Enter Meeting Details</div>
           <div
-            className="cursor-pointer text-4xl transition-colors duration-300 ease-in-out hover:text-red-500"
+            className="cursor-pointer text-[2.35rem] transition-colors duration-300 ease-in-out hover:text-red-500"
             onClick={() => handleIsclosing()}
           >
             <IoCloseCircleOutline />
@@ -195,11 +226,11 @@ const MeetingDetailsModal = ({
                 <SelectValue placeholder="Meeting Mode" />
               </SelectTrigger>
               <SelectContent className="rounded-xl border-0 bg-zinc-800 py-7 text-[1rem] text-gray-100 lg:py-6">
-                <SelectItem value="voice call" className="">
+                <SelectItem value="Voice Call" className="">
                   Voice Call
                 </SelectItem>
-                <SelectItem value="zoom video call">Zoom Video Call</SelectItem>
-                <SelectItem value="in person">In Person</SelectItem>
+                <SelectItem value="Video Call">Video Call</SelectItem>
+                <SelectItem value="In-Person">In-Person</SelectItem>
               </SelectContent>
             </Select>
             <Select
@@ -233,8 +264,8 @@ const MeetingDetailsModal = ({
             {isVoiveCall && (
               <Input
                 className={`rounded-lg border-0 bg-zinc-900 py-7 text-[1rem] lg:py-6`}
-                placeholder="10 digits mobile number"
-                type="tel"
+                placeholder="Mobile No. (10 digits)"
+                type="number"
                 required
                 name="mobile"
                 value={meetingForm.mobile}
@@ -242,10 +273,10 @@ const MeetingDetailsModal = ({
               />
             )}
           </div>
-          <div className="-mb-2 ml-1.5 w-full text-start text-[0.95rem]">
-            Select Your Preferred Date and Time Slot
+          <div className="-mb-1 ml-1.5 w-full text-start text-[0.95rem]">
+            Select Your Preferred Date and Time Slot:
           </div>
-          <div className="grid w-full grid-cols-2 gap-3">
+          <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-4">
             {dateNtime.map((dNt, index) => (
               <div key={index}>
                 <input
@@ -263,13 +294,12 @@ const MeetingDetailsModal = ({
                 <Label
                   htmlFor={dNt.id}
                   className={cn(
-                    "box-border flex cursor-pointer flex-col gap-1 rounded-xl bg-zinc-900 p-3 transition-opacity duration-300 ease-in-out hover:brightness-125",
+                    "box-border flex cursor-pointer flex-col gap-1 rounded-xl bg-zinc-900 p-4 transition-opacity duration-300 ease-in-out hover:brightness-125",
                     dNt.textColor,
                   )}
                 >
                   <p>{dNt.date}</p>
                   <p>{dNt.time}</p>
-                  <p>{dNt.utcTime}</p>
                 </Label>
               </div>
             ))}

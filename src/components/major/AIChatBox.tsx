@@ -304,6 +304,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
                 loadMeetingModal={loadMeetingModal}
                 meetingDetailsSubmitted={meetingDetailsSubmitted}
                 setLoadMeetingModal={setLoadMeetingModal}
+                scrollRef={scrollRef}
               />
             ))}
 

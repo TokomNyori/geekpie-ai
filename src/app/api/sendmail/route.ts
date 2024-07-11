@@ -52,6 +52,16 @@ export async function POST(req: NextRequest) {
             to: email,
         };
 
+
+        let detailsForMeetingMode;
+        if (meetingMode === 'In-Person') {
+            detailsForMeetingMode = `Our office address is: Gohpur Tinali near K3 Gas Service, Itanagar Capital Complex, Itanagar, Arunachal Pradesh - 791111, India.`;
+        } else if (meetingMode === 'Video Call') {
+            detailsForMeetingMode = `We will send you a video call link 3 hours before the scheduled date and time of the meeting.`;
+        } else {
+            detailsForMeetingMode = `We will call you at the scheduled time on the provided number.`;
+        }
+
         message = `
             Dear ${customerName},<br/><br/>
             Thank you for scheduling a meeting with the GeekPie team. We are excited to discuss your needs and how we can assist you.<br/><br/>
@@ -62,6 +72,7 @@ export async function POST(req: NextRequest) {
             - <b>Service of Interest:</b> ${service}<br/>
             - <b>Meeting Mode:</b> ${meetingMode}<br/>
             - <b>Date and Time:</b> ${meetingDateTime}<br/><br/>
+            ${detailsForMeetingMode}<br/><br/>
             If you need to make any changes to the date or time of the meeting, please feel free to reply to this email, and we will be happy to accommodate your request.<br/><br/>
             We look forward to speaking with you.
         `;
