@@ -4,16 +4,32 @@ import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
 import { Message } from "ai/react";
 import { cn } from "@/libs/utils";
+import { Button } from "../ui/button";
 
 type MessageProps = {
   message: Message;
+  showMeetingBtn: boolean;
+  showButtonInThisMessage?: boolean;
+  loadMeetingModal?: boolean;
+  meetingDetailsSubmitted?: boolean;
+  setLoadMeetingModal: React.Dispatch<boolean>;
 };
 
 export default function ChatMessages({
   message: { role, content, id },
+  showMeetingBtn,
+  showButtonInThisMessage,
+  setLoadMeetingModal,
+  meetingDetailsSubmitted,
 }: MessageProps) {
   const aiMessages = role === "assistant";
   const idStatus = id === "loading";
+
+  console.log({
+    aiMessages,
+    showMeetingBtn,
+    showButtonInThisMessage,
+  });
 
   return (
     <div
@@ -60,6 +76,17 @@ export default function ChatMessages({
         >
           {content}
         </ReactMarkDown>
+        {aiMessages && showMeetingBtn && showButtonInThisMessage && (
+          <Button
+            className="mb-2 mt-2 bg-black hover:bg-black hover:brightness-125 disabled:bg-zinc-500 disabled:text-zinc-950"
+            disabled={meetingDetailsSubmitted}
+            onClick={() => setLoadMeetingModal(true)}
+          >
+            {meetingDetailsSubmitted
+              ? "Details submitted successfully!"
+              : "Click here to enter meeting details"}
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 const GeekPieBotTrainingData = () => {
+  // This component contains the training data for the GeekPie Bot
   return (
     <div>
+      {/* This div contains the information about the Features */}
       <div>
-        <h1>Features -</h1>
+        <h1>Features</h1>
         <p>
           Effortless Interactions: Engage customers seamlessly with GeekPie
           AI&apos;s chatbot, providing faster responses than traditional
@@ -23,8 +25,9 @@ const GeekPieBotTrainingData = () => {
           human efforts.
         </p>
       </div>
+      {/* This div contains the information about the Services */}
       <div>
-        <h1>Services -</h1>
+        <h1>Services</h1>
         <p>
           Customer Service Chatbots: We create highly customized customer
           service chatbots. We use PyTorch and LangChain frameworks along with
@@ -48,6 +51,7 @@ const GeekPieBotTrainingData = () => {
           for our clients.
         </p>
       </div>
+      {/* This div contains the information about the Technologies we use */}
       <div>
         <h1>Technologies we use</h1>
         <p>
@@ -60,24 +64,27 @@ const GeekPieBotTrainingData = () => {
           Flask frameworks.
         </p>
       </div>
+      {/* This div contains the information about the Founders */}
       <div>
-        <h1>Who are the founder of GeekPie</h1>
+        <h1>Who are the founders of GeekPie?</h1>
         <p>
           The founders of GeekPie are Tokom Nyori, a Software Engineer and
           economics student, and Femi Omojuwa, a Software Engineer and AI
           engineer.
         </p>
       </div>
+      {/* This div contains the information about the Core Members */}
       <div>
-        <h1>Core Members of GeekPie-</h1>
+        <h1>Who are the Core Members of GeekPie?</h1>
         <ul>
           <li>Tokom Nyori (India) : CEO and Senior Software Engineer</li>
           <li>Femi Omojuwa (Nigeria) : COO and AI Engineer</li>
           <li>Karim Ammar (Lebanon) : CTO and Senior Software Engineer</li>
         </ul>
       </div>
+      {/* This div contains the information about the Contact Us */}
       <div>
-        <h1>Contact</h1>
+        <h1>Contact Us</h1>
         <p>
           <ul>
             <li>Whatsapp: +918837428457</li>
@@ -87,13 +94,15 @@ const GeekPieBotTrainingData = () => {
           </ul>
         </p>
       </div>
+      {/* This div contains the information about the Address of GeekPie Software Company */}
       <div>
-        <h1>Address: GeekPie Software Company</h1>
+        <h1>Address of GeekPie Software Company</h1>
         <p>
           Gohpur Tinali near K3 Gas Service, Itanagar Capital Complex, Itanagar,
           Arunachal Pradesh - 791111.
         </p>
       </div>
+      {/* This div contains the information about the Pricing */}
       <div>
         <h1>Pricing</h1>
         <p>
@@ -103,29 +112,59 @@ const GeekPieBotTrainingData = () => {
           arrange a meeting where we can discuss the details.
         </p>
       </div>
+      {/* This div contains information on how to contact GeekPie Software Company */}
       <div>
         <h1>How can I contact you?</h1>
         <p>
-          Contact us by phone, WhatsApp, email, or visit our office. Our GeekPie
-          Bot can provide all relevant information and arrange a meeting for you
-          by asking just three simple questions: your name, email, and the
-          purpose of the meeting. It`&apos;`s important to provide all three
-          details to proceed with scheduling the meeting. After receiving the
-          details, GeekPie Bot will send you a confirmation email with the date
-          and time. The date will be automatically set for tomorrow at 3 PM IST,
-          but You can adjust the date and time directly within the email. The
-          three simple questions will be presented in a clear format:
-          <ul>
-            <li>Name:</li>
-            <li>Email:</li>
-            <li>Purpose:</li>
-          </ul>
+          You can contact us by phone, WhatsApp, email, Instagram, or by
+          visiting our office. Our GeekPie Bot is equipped to provide all the
+          relevant information and assist in scheduling a meeting with the
+          GeekPie team. Here&apos;s how it works:
         </p>
+        <ol>
+          <li>Ask the GeekPie Bot to schedule or arrange a meeting.</li>
+          <li>
+            The GeekPie Bot will immediately open a dialog box where you can
+            enter your meeting details
+          </li>
+          <li>
+            In the dialog box, provide the following information:
+            <ul>
+              <li>Your name</li>
+              <li>Preferred meeting mode</li>
+              <li>Your email</li>
+              <li>
+                Your mobile number (optional, only needed for the voice call
+                meeting mode)
+              </li>
+              <li>The service you&apos;re interested in</li>
+              <li>Select a date and time from the available slots</li>
+            </ul>
+          </li>
+          <li>
+            Click on the &quot;Submit&quot; button in the dialog box to submit
+            your meeting details.
+          </li>
+          <li>
+            After you submit the details, GeekPie Bot will immediately send you
+            a confirmation email with the details and respond you with
+            &quot;Thank you! Your meeting details have been submitted. A
+            confirmation email has been sent to you. If you need to modify the
+            date or time, please reply to the confirmation email with your
+            request.&quot;.
+          </li>
+          <li>
+            If you need to modify the date or time, simply reply to the
+            confirmation email with your request.
+          </li>
+        </ol>
       </div>
+      {/* This div contains the information about the GeekPie AI */}
       <div>
-        <h1>Who developed GeekPie AI</h1>
+        <h1>Who developed GeekPie AI?</h1>
         <p>GeekPie AI is developed by the team at GeekPie Software Company.</p>
       </div>
+      {/* This div contains the information about the GeekPie AI */}
       <div>
         <h1>Can you tell me more about GeekPie AI?</h1>
         <p>
@@ -137,6 +176,7 @@ const GeekPieBotTrainingData = () => {
           businesses.
         </p>
       </div>
+      {/* This div contains the information about the GeekPie Software Company */}
       <div>
         <h1>Tell me about GeekPie Software Company?</h1>
         <p>

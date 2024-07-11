@@ -96,6 +96,12 @@
   background-size: 400% 400%;
 }
 
+
+.meeting-radio-btn[type="radio"]:checked + label {
+  border: 2px solid rgb(83, 83, 83);
+  @apply brightness-125;
+}
+
 .z-60 {
   z-index: 60;
 }

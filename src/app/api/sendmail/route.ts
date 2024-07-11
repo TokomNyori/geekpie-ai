@@ -23,8 +23,7 @@ export async function POST(req: NextRequest) {
         }
     })
 
-    const { mailType, subject, firstName, lastName, email, mobile, service, customerName,
-        customerEmail, customerPurpose, meetingDateTime } = await req.json();
+    const { mailType, subject, firstName, lastName, email, mobile, service, customerName, meetingMode, meetingDateTime } = await req.json();
     let mailOptions = {}
     let message;
 
@@ -50,7 +49,7 @@ export async function POST(req: NextRequest) {
         // const { customerName, customerEmail, customerPurpose, meetingDateTime } = await req.json();
         mailOptions = {
             from: `"GeekPie Software Company" <${geekpieEmail}>`,
-            to: customerEmail,
+            to: email,
         };
 
         message = `
@@ -58,7 +57,10 @@ export async function POST(req: NextRequest) {
             Thank you for scheduling a meeting with the GeekPie team. We are excited to discuss your needs and how we can assist you.<br/><br/>
             <b>Meeting Details:</b><br/>
             - <b>Name:</b> ${customerName}<br/>
-            - <b>Purpose:</b> ${customerPurpose}<br/>
+            - <b>Email:</b> ${email}<br/>
+            - <b>Mobile Number:</b> ${mobile}<br/>
+            - <b>Service of Interest:</b> ${service}<br/>
+            - <b>Meeting Mode:</b> ${meetingMode}<br/>
             - <b>Date and Time:</b> ${meetingDateTime}<br/><br/>
             If you need to make any changes to the date or time of the meeting, please feel free to reply to this email, and we will be happy to accommodate your request.<br/><br/>
             We look forward to speaking with you.

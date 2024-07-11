@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/libs/utils";
 import { useChat, Message } from "ai/react";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { LuMinusCircle } from "react-icons/lu";
 import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
@@ -27,6 +26,7 @@ import {
 import { MeetingDetails } from "@/helpers/typeScriptTypes";
 import toast from "react-hot-toast";
 import PuffLoader from "react-spinners/PuffLoader";
+import MeetingDetailsModal from "../modals/MeetingDetailsModal";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -53,10 +53,26 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   } = useChat({
     api: "/api/langai",
   });
-  const [isSendingMail, setIsSendingMail] = useState<Boolean>(false);
-  const [isMobileView, setIsMobileView] = useState<Boolean>();
+  const [isSendingMail, setIsSendingMail] = useState<boolean>(false);
+  const [isMobileView, setIsMobileView] = useState<boolean>();
   const [demoPrompt, setDemoPrompt] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [loadMeetingModal, setLoadMeetingModal] = useState<boolean>(false);
+  const [showMeetingBtn, setShowMeetingBtn] = useState<boolean>(false);
+  const [meetingDetailsSubmitted, setMeetingDetailsSubmitted] =
+    useState<boolean>(false);
+  const [lastMeetingMessageIndex, setLastMeetingMessageIndex] = useState<
+    number | null
+  >(null);
+  const [meetingDetails, setMeetingDetails] = useState<MeetingDetails>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    mode: "",
+    service: "",
+    meetingTime: "",
+  });
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const aiChatBoxRef = useRef<HTMLDivElement>(null);
@@ -72,7 +88,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       handleSubmit(createMockFormEvent());
       setDemoPrompt(false);
     }
-  }, [input, demoPrompt, handleSubmit]);
+  }, [input, demoPrompt]);
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -127,11 +143,80 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     };
   }, []);
 
+  // UseEffect to detect meeting
   useEffect(() => {
     if (!isLoading) {
-      handleMeetingMail();
+      handleMeetingDetection();
+    }
+
+    async function handleMeetingDetection() {
+      const res = await meetingDetector(messages);
+
+      if (res) {
+        setShowMeetingBtn(true);
+        setLastMeetingMessageIndex(messages.length - 1);
+        const timeoutId = setTimeout(() => {
+          setLoadMeetingModal(true);
+        }, 3000);
+
+        return () => clearTimeout(timeoutId);
+      }
     }
   }, [messages, isLoading]);
+
+  // UseEffect to send mail
+  useEffect(() => {
+    if (meetingDetailsSubmitted) {
+      setInput(`Name: ${meetingDetails.firstName} ${meetingDetails.lastName}\n
+Email: ${meetingDetails.email}\n
+Mobile Number: ${meetingDetails.mobile || "Blank"}\n
+Service of Interest: ${meetingDetails.service}\n
+Meeting Mode: ${meetingDetails.mode}\n
+Date and Time: ${meetingDetails.meetingTime}`);
+      setDemoPrompt(true);
+      handleSendMail();
+    }
+
+    async function handleSendMail() {
+      //setIsSendingMail(true);
+      try {
+        const detailResponse: MeetingDetails = meetingDetails;
+
+        const dataToUser = {
+          customerName:
+            detailResponse.firstName + " " + detailResponse.lastName,
+          email: detailResponse.email,
+          mobile: detailResponse.mobile || "Not Provided",
+          meetingMode: detailResponse.mode,
+          service: detailResponse.service,
+          meetingDateTime: detailResponse.meetingTime,
+          subject: "Meeting Confirmation with GeekPie Team",
+          mailType: "meeting",
+        };
+
+        try {
+          const res = await mailSender({
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: dataToUser,
+          });
+          toast.success("Meeting Confirmed! Confirmation Email Sent", {
+            duration: 5000,
+          });
+        } catch (error) {
+          console.error(error);
+          toast.error("Oops! Couldn't Send Confirmation Email.");
+        } finally {
+          //setIsSendingMail(false);
+        }
+      } catch (error) {
+        console.error(error);
+        //setIsSendingMail(false);
+      }
+    }
+  }, [meetingDetailsSubmitted, meetingDetails]);
 
   const container = useRef(null);
   gsap.registerPlugin(useGSAP);
@@ -176,66 +261,14 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     { scope: container, dependencies: [open, isClosing] },
   );
 
-  async function handleMeetingMail() {
-    const res = await meetingDetector(messages);
-
-    if (res) {
-      setIsSendingMail(true);
-      try {
-        const resTwo = await detectMeetingDetails({
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: {
-            messages: messages,
-          },
-        });
-
-        const detailResponse: MeetingDetails = resTwo.body;
-        console.log(detailResponse);
-
-        const dataToUser = {
-          customerName: detailResponse.name,
-          customerEmail: detailResponse.email,
-          customerPurpose: detailResponse.purpose,
-          meetingDateTime: "Tomorrow at 3 PM IST",
-          subject: "Meeting Confirmation with GeekPie Team",
-          mailType: "meeting",
-        };
-
-        try {
-          const res = await mailSender({
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: dataToUser,
-          });
-          toast.success("Meeting Confirmed! Confirmation Email Sent", {
-            duration: 5000,
-          });
-        } catch (error) {
-          console.error(error);
-          toast.error("Oops! Couldn't Send Confirmation Email.");
-        } finally {
-          setIsSendingMail(false);
-        }
-      } catch (error) {
-        console.error(error);
-        setIsSendingMail(false);
-      }
-    }
-  }
-
   function handleIsclosing() {
     setIsClosing(true);
   }
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
-  // console.log(messages);
-  // console.log(input);
+  console.log("Meeting Details:");
+  console.log(meetingDetails);
 
   return (
     <div
@@ -256,14 +289,22 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         >
           <LuMinusCircle />
         </button>
-        <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[45.5rem] lg:h-[37.5rem]">
+        <div className="relative flex h-[85vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[45.5rem] lg:h-[37.5rem]">
           {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
           <div
             className="mt-6 h-full w-full overflow-y-auto px-4"
             ref={scrollRef}
           >
             {messages.map((message, index) => (
-              <ChatMessages key={index} message={message} />
+              <ChatMessages
+                key={index}
+                message={message}
+                showMeetingBtn={showMeetingBtn}
+                showButtonInThisMessage={index === lastMeetingMessageIndex}
+                loadMeetingModal={loadMeetingModal}
+                meetingDetailsSubmitted={meetingDetailsSubmitted}
+                setLoadMeetingModal={setLoadMeetingModal}
+              />
             ))}
 
             {isLoading && isLastMessageByUser && (
@@ -300,6 +341,9 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
                   role: "assistant",
                   content: "Something went wrong. Please try again!",
                 }}
+                showMeetingBtn={showMeetingBtn}
+                meetingDetailsSubmitted={meetingDetailsSubmitted}
+                setLoadMeetingModal={setLoadMeetingModal}
               />
             )}
 
@@ -356,7 +400,12 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               className="flex flex-none items-center justify-center text-3xl disabled:opacity-50 md:text-2xl"
               title="Clear Chat"
               disabled={messages.length === 0 || isLoading}
-              onClick={() => setMessages([])}
+              onClick={() => {
+                setMessages([]);
+                setLastMeetingMessageIndex(null);
+                setShowMeetingBtn(false);
+                setMeetingDetailsSubmitted(false);
+              }}
             >
               <MdDeleteOutline className="" />
             </button>
@@ -401,10 +450,18 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
               )}
             </button>
           </form>
+          {loadMeetingModal && (
+            <MeetingDetailsModal
+              loadMeetingModal={loadMeetingModal}
+              setLoadMeetingModal={setLoadMeetingModal}
+              setMeetingDetails={setMeetingDetails}
+              setMeetingDetailsSubmitted={setMeetingDetailsSubmitted}
+            />
+          )}
         </div>
       </div>
 
-      <div
+      {/* <div
         className={`${isSendingMail ? "z-60 fixed left-0 top-0 h-full w-full backdrop-blur-sm" : "hidden"}`}
       >
         <div className="flex h-full w-full flex-col items-center justify-center gap-8">
@@ -417,10 +474,10 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
             speedMultiplier={1}
           />
           <span className="animate-pulse text-xl capitalize tracking-widest text-gray-100 md:text-2xl">
-            Confirming Meeting...
+            Sending Confirmation Email...
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

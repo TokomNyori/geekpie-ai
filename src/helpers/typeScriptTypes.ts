@@ -1,20 +1,24 @@
 export type GeminiMessage = {
-    content: string;
-    createdAt: Date;
-    id: string;
-    role: string;
+  content: string;
+  createdAt: Date;
+  id: string;
+  role: string;
 }
 
 
 export type MeetingDetails = {
-    name: string;
-    email: string;
-    purpose: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile?: string;
+  mode: string;
+  service: string;
+  meetingTime: string;
 }
 
 export type MeetingResponse = {
-    meeting: boolean;
-    details?: MeetingDetails; // 'details' is optional
+  meeting: boolean;
+  details?: MeetingDetails; // 'details' is optional
 }
 
 
