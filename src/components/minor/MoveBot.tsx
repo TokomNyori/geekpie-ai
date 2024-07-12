@@ -5,8 +5,11 @@ import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
 import AIChatBox from "../major/AIChatBox";
 
-const MoveBot = () => {
-  const [openChatBox, setOpenChatBox] = useState(false);
+type MoveBotProps = {
+  setOpenChatBox: React.Dispatch<boolean>;
+};
+
+const MoveBot = ({ setOpenChatBox }: MoveBotProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const moveBotRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +47,6 @@ const MoveBot = () => {
           </div> */}
         </div>
       </motion.div>
-      <AIChatBox open={openChatBox} onClose={() => setOpenChatBox(false)} />
     </>
   );
 };

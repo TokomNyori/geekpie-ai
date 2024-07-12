@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ButtonLink from "../minor/ButtonLink";
@@ -9,12 +9,14 @@ import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import StarGrid from "../svg-components/StarGrid";
 import ChatBoxTrigger from "../minor/ChatBoxTrigger";
 import MoveBot from "../minor/MoveBot";
+import AIChatBox from "../major/AIChatBox";
 
 type GsapAnimatedContentProps = {
   props: HeroProps;
 };
 
 const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
+  const [openChatBox, setOpenChatBox] = useState(false);
   const container = useRef(null);
   gsap.registerPlugin(useGSAP);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -96,7 +98,8 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
       </p>
       <ChatBoxTrigger
         buttonText={`${props.buttonText}`}
-        className="hero__button mt-8 opacity-0 cursor-pointer"
+        className="hero__button mt-8 cursor-pointer opacity-0"
+        setOpenChatBox={setOpenChatBox}
       />
       <div className="hero__image glass-container mt-16 w-fit opacity-0">
         <div className="hero__glow absolute inset-0 -z-10 bg-blue-500/30 opacity-0 blur-2xl filter" />
@@ -115,7 +118,8 @@ const GsapAnimatedContent = ({ props }: GsapAnimatedContentProps) => {
           alt={`${props.alt}`}
         />
       </div>
-      <MoveBot />
+      <MoveBot setOpenChatBox={setOpenChatBox} />
+      <AIChatBox open={openChatBox} onClose={() => setOpenChatBox(false)} />
     </div>
   );
 };

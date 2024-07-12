@@ -8,19 +8,25 @@ import { useState } from "react";
 type ChatBoxTriggerProps = {
   buttonText: string;
   className?: string;
+  setOpenChatBox: React.Dispatch<boolean>;
 };
 
-const ChatBoxTrigger = ({ buttonText, className }: ChatBoxTriggerProps) => {
-  const [openChatBox, setOpenChatBox] = useState(false);
+const ChatBoxTrigger = ({
+  buttonText,
+  className,
+  setOpenChatBox,
+}: ChatBoxTriggerProps) => {
   return (
     <>
-      <ButtonLink className={cn(className)} onClick={() => setOpenChatBox(true)}>
+      <ButtonLink
+        className={cn(className)}
+        onClick={() => setOpenChatBox(true)}
+      >
         <div className="flex items-center justify-center gap-3">
           <GoDependabot className="text-xl" />
           {buttonText}
         </div>
       </ButtonLink>
-      <AIChatBox open={openChatBox} onClose={() => setOpenChatBox(false)} />
     </>
   );
 };

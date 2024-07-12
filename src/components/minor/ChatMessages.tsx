@@ -34,11 +34,11 @@ export default function ChatMessages({
     }
   }, [showButtonInThisMessage, scrollRef]);
 
-  console.log({
-    aiMessages,
-    showMeetingBtn,
-    showButtonInThisMessage,
-  });
+  // console.log({
+  //   aiMessages,
+  //   showMeetingBtn,
+  //   showButtonInThisMessage,
+  // });
 
   return (
     <div

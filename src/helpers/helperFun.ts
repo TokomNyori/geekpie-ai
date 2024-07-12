@@ -64,7 +64,7 @@ export async function meetingDetector(msgs: Message[]) {
     const confirmAI = aiLastMessage.includes("meeting") && aiLastMessage.includes("^");
 
     // console.log(aiLastMessage)
-    if (keywordFound && confirmAI) {
+    if (confirmAI) {
         console.log("True: keywordFound && confirmAI!")
         return true
     } else {

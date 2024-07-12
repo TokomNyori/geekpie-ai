@@ -8,6 +8,8 @@ import { LuMinusCircle } from "react-icons/lu";
 import Lottie from "lottie-react";
 import Orb from "@/assets/jsons/orb1.json";
 import TypingAni from "@/assets/jsons/typing.json";
+import MeetingAni from "@/assets/jsons/meetingLoader1.json";
+import ConfettiAni from "@/assets/jsons/Confetti1.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -27,6 +29,10 @@ import { MeetingDetails } from "@/helpers/typeScriptTypes";
 import toast from "react-hot-toast";
 import PuffLoader from "react-spinners/PuffLoader";
 import MeetingDetailsModal from "../modals/MeetingDetailsModal";
+import ChatBotThinkingState from "../minor/ChatBotGeneralState";
+import ChatBotSendingMailState from "../minor/ChatBotSendingMailState";
+import ChatBotGeneralState from "../minor/ChatBotGeneralState";
+import { set } from "date-fns";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -54,6 +60,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     api: "/api/langai",
   });
   const [isSendingMail, setIsSendingMail] = useState<boolean>(false);
+  const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
   const [isMobileView, setIsMobileView] = useState<boolean>();
   const [demoPrompt, setDemoPrompt] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -61,6 +68,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   const [showMeetingBtn, setShowMeetingBtn] = useState<boolean>(false);
   const [meetingDetailsSubmitted, setMeetingDetailsSubmitted] =
     useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const [lastMeetingMessageIndex, setLastMeetingMessageIndex] = useState<
     number | null
   >(null);
@@ -145,6 +153,8 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
 
   // UseEffect to detect meeting
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
     if (!isLoading) {
       handleMeetingDetection();
     }
@@ -155,13 +165,17 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
       if (res) {
         setShowMeetingBtn(true);
         setLastMeetingMessageIndex(messages.length - 1);
-        const timeoutId = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setLoadMeetingModal(true);
-        }, 3000);
-
-        return () => clearTimeout(timeoutId);
+        }, 4000);
       }
     }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [messages, isLoading]);
 
   // UseEffect to send mail
@@ -178,7 +192,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
     }
 
     async function handleSendMail() {
-      //setIsSendingMail(true);
+      setIsSendingMail(true);
       try {
         const detailResponse: MeetingDetails = meetingDetails;
 
@@ -202,21 +216,44 @@ Date and Time: ${meetingDetails.meetingTime}`);
             },
             body: dataToUser,
           });
-          toast.success("Meeting Confirmed! Confirmation Email Sent", {
-            duration: 5000,
-          });
+
+          setIsEmailSent(true);
         } catch (error) {
           console.error(error);
           toast.error("Oops! Couldn't Send Confirmation Email.");
-        } finally {
-          //setIsSendingMail(false);
         }
       } catch (error) {
         console.error(error);
-        //setIsSendingMail(false);
       }
     }
   }, [meetingDetailsSubmitted, meetingDetails]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    const lastMessage = messages[messages.length - 1];
+    const isLastMessageByAI = lastMessage?.role === "assistant";
+
+    if (isSendingMail && isEmailSent && isLastMessageByAI && !isLoading) {
+      setIsSendingMail(false);
+      toast.success("Meeting Confirmed! Confirmation Email Sent", {
+        duration: 5000,
+      });
+
+      setShowConfetti(true);
+    }
+
+    if (showConfetti) {
+      timeoutId = setTimeout(() => {
+        setShowConfetti(false);
+      }, 2000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isSendingMail, messages, isEmailSent, showConfetti, isLoading]);
 
   const container = useRef(null);
   gsap.registerPlugin(useGSAP);
@@ -268,7 +305,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
   console.log("Meeting Details:");
-  console.log(meetingDetails);
+  console.log(showConfetti);
 
   return (
     <div
@@ -289,7 +326,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
         >
           <LuMinusCircle />
         </button>
-        <div className="relative flex h-[85vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[45.5rem] lg:h-[37.5rem]">
+        <div className="relative flex h-[80vh] flex-col rounded-2xl border border-gray-500/50 bg-black backdrop-blur-[24px] md:h-[45.5rem] lg:h-[37.5rem]">
           {/* <div className="absolute inset-0 top-16 -z-10 aspect-square rounded-full bg-blue-400/25 blur-3xl filter"></div> */}
           <div
             className="mt-6 h-full w-full overflow-y-auto px-4"
@@ -308,31 +345,19 @@ Date and Time: ${meetingDetails.meetingTime}`);
               />
             ))}
 
-            {isLoading && isLastMessageByUser && (
-              <div className="mb-4 flex w-full items-start justify-start text-gray-100">
-                <div className="-ml-0.5 -mt-0.5 mr-1.5 w-[1.8rem] flex-none">
-                  {/* <div className="absolute inset-0 bg-blue-500/50 blur-[8px] filter"></div> */}
-                  <Lottie
-                    className="rounded-full"
-                    animationData={Orb}
-                    loop={true}
-                  />
-                </div>
-                <div
-                  className={cn(
-                    "relative mr-7 flex items-center overflow-x-auto rounded-lg rounded-tl-none border-none bg-zinc-900 px-3 py-3 pr-10 text-start",
-                  )}
-                >
-                  Thinking
-                  <div className="absolute right-2.5 top-0 mt-3.5 w-[1.5rem]">
-                    <Lottie
-                      className="rounded-full"
-                      animationData={TypingAni}
-                      loop={true}
-                    />
-                  </div>
-                </div>
-              </div>
+            {!isSendingMail && isLoading && isLastMessageByUser && (
+              <ChatBotGeneralState
+                textMessage="Thinking"
+                lottieJsonOrb={Orb}
+                lottieJsonOptional={TypingAni}
+              />
+            )}
+
+            {isSendingMail && isLoading && isLastMessageByUser && (
+              <ChatBotSendingMailState
+                lottieJson1={Orb}
+                lottieJson2={MeetingAni}
+              />
             )}
 
             {error && (
@@ -406,6 +431,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
                 setLastMeetingMessageIndex(null);
                 setShowMeetingBtn(false);
                 setMeetingDetailsSubmitted(false);
+                setIsEmailSent(false);
               }}
             >
               <MdDeleteOutline className="" />
@@ -459,6 +485,14 @@ Date and Time: ${meetingDetails.meetingTime}`);
               setMeetingDetailsSubmitted={setMeetingDetailsSubmitted}
             />
           )}
+        </div>
+      </div>
+
+      <div
+        className={`${showConfetti ? "z-60 fixed right-0 top-0 flex h-full w-full items-center justify-center" : "hidden"}`}
+      >
+        <div className="flex items-center justify-center">
+          <Lottie className="w-[100%]" animationData={ConfettiAni} />
         </div>
       </div>
 
