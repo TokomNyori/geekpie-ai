@@ -44,7 +44,7 @@ async function generateEmbeddings() {
     const splitter = RecursiveCharacterTextSplitter.fromLanguage("html");
     const splittedDocs = await splitter.splitDocuments(docs);
 
-    console.log(splittedDocs)
+    // console.log(splittedDocs)
 
     await vectorStore.addDocuments(splittedDocs);
 }
