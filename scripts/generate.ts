@@ -14,7 +14,7 @@ async function generateEmbeddings() {
     (await getEmbeddingsCollection()).deleteMany({})
 
     const loader = new DirectoryLoader(
-        "src/components/",
+        "src/components/training/",
         {
             ".tsx": (path) => new TextLoader(path)
         },
@@ -44,7 +44,7 @@ async function generateEmbeddings() {
     const splitter = RecursiveCharacterTextSplitter.fromLanguage("html");
     const splittedDocs = await splitter.splitDocuments(docs);
 
-    // console.log(splittedDocs)
+    console.log(splittedDocs)
 
     await vectorStore.addDocuments(splittedDocs);
 }

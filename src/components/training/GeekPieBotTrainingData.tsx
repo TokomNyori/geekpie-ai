@@ -2,7 +2,7 @@ const GeekPieBotTrainingData = () => {
   // This component contains the training data for the GeekPie Bot
   return (
     <div>
-      {/* This div contains the information about the Features */}
+      {/* This div contains the information about the Features of GeekPIe AI */}
       <div>
         <h1>Features</h1>
         <p>
@@ -25,7 +25,7 @@ const GeekPieBotTrainingData = () => {
           human efforts.
         </p>
       </div>
-      {/* This div contains the information about the Services */}
+      {/* This div contains the information about the Services of GeekPie AI */}
       <div>
         <h1>Services</h1>
         <p>
@@ -51,7 +51,7 @@ const GeekPieBotTrainingData = () => {
           for our clients.
         </p>
       </div>
-      {/* This div contains the information about the Technologies we use */}
+      {/* This div contains the information about the Technologies used in GeekPie AI */}
       <div>
         <h1>Technologies we use</h1>
         <p>
@@ -82,7 +82,7 @@ const GeekPieBotTrainingData = () => {
           <li>Karim Ammar (Lebanon) : CTO and Senior Software Engineer</li>
         </ul>
       </div>
-      {/* This div contains the information about the Contact Us */}
+      {/* This div contains information about the contact information */}
       <div>
         <h1>Contact Us</h1>
         <p>
@@ -99,17 +99,11 @@ const GeekPieBotTrainingData = () => {
         <h1>Address of GeekPie Software Company</h1>
         <p>
           Gohpur Tinali near K3 Gas Service, Itanagar Capital Complex, Itanagar,
-          Arunachal Pradesh - 791111.
+          Arunachal Pradesh - 791111, India.
         </p>
-      </div>
-      {/* This div contains the information about the Pricing */}
-      <div>
-        <h1>Pricing</h1>
         <p>
-          Pricing depends on the level of customization, the extent of model
-          training, and the number of large language models (LLMs) used. The
-          base plan starts at 15,000 INR. Please contact us by phone or email to
-          arrange a meeting where we can discuss the details.
+          Google map link of the GeekPie Software Company&apos;s office
+          location: https://maps.app.goo.gl/BYuj7ReFQTfNDzse6
         </p>
       </div>
       {/* This div contains information on how to contact GeekPie Software Company */}
@@ -189,6 +183,131 @@ const GeekPieBotTrainingData = () => {
           applications and microservices.
         </p>
       </div>
+
+      {/* This div contains information about the FAQs */}
+      <div>
+        <p>
+          1. What is the website link of GeekPie AI?
+          <br />
+          The official website link of GeekPie AI is https://www.geekpie.in/.
+        </p>
+        <p>
+          2. What is the website link of GeekPie Software Company?
+          <br />
+          The website link of GeekPie Software Company is
+          https://www.geekpie.in/. This website is currently under
+          redevelopment, so the link may not be functional at the moment.
+        </p>
+        <p>
+          3. How many pages does GeekPie AI&apos;s landing website have?
+          <br />
+          GeekPie AI&apos;s landing page (https://geekpieai.vercel.app/) is a
+          single-page website developed using the Next.js framework. All
+          information is contained on this single page.
+        </p>
+        <p>
+          4. Does GeekPie AI&apos;s landing page have a signup or account
+          feature?
+          <br />
+          No, GeekPie AI&apos;s landing page does not have any account creation
+          feature as there is no need for signup or sign-in functionalities.
+        </p>
+      </div>
+
+      <p>
+        1. Does GeekPie Software Company&apos;s website have a signup or sign-in
+        feature?
+        <br />
+        Yes, it has an account creation feature for freelancers who want to join
+        and work with GeekPie Software Agency. However, the website is currently
+        under redevelopment, so it may not be functional at this time.
+      </p>
+      <p>
+        2. Can you help me sign up to GeekPie Software Company?
+        <br />
+        No, I primarily handle queries related to GeekPie AI. Additionally, I do
+        not have the capability to assist with user signup or sign-in processes.
+      </p>
+      <p>
+        3. What is the pricing for the customer service chatbots?
+        <br />
+        Pricing depends on the level of customization, the extent of model
+        training, and the number of large language models (LLMs) used. The base
+        plan starts at 15,000 INR. Please contact us by phone or email to
+        arrange a meeting to discuss the details.
+      </p>
+      <p>
+        4. What is the pricing for Chat UI design?
+        <br />
+        The pricing for Chat UI design varies based on the level of
+        customization required. This includes factors such as the complexity of
+        the design, the number of unique elements, animations, and the overall
+        user experience desired. To get an accurate quote, please contact us by
+        phone or email to arrange a meeting where we can discuss your
+        requirements in detail and provide a tailored pricing plan.
+      </p>
+      <p>
+        5. What is the pricing for the Microservices?
+        <br />
+        The pricing for microservices depends on several factors, including the
+        type of microservices needed, their complexity, and the scope of
+        integration with your existing systems. Microservices can range from
+        simple APIs to more complex, data-driven services that require extensive
+        development and testing. For a detailed discussion and an accurate
+        pricing estimate, please contact us by phone or email to arrange a
+        meeting.
+      </p>
+      <p>
+        6. What is the process for converting the client&apos;s idea into
+        reality?
+        <br />
+        We have a comprehensive five-stage process, and we maintain constant
+        communication with our clients throughout each stage to ensure their
+        vision is brought to life. Here’s how we do it:
+      </p>
+      <p>
+        <ol>
+          <li>
+            Discussion: This stage involves a thorough discussion with the
+            client about their idea. We take the time to understand their
+            vision, goals, and requirements. This helps us align our approach
+            with their expectations and provides a solid foundation for the
+            project.
+          </li>
+          <li>
+            Breaking the Idea into Atomic Parts: We break down the idea into
+            smaller, manageable components. This helps us understand the
+            intricacies of the project and plan the implementation effectively.
+            By dissecting the idea, we can identify potential challenges early
+            and devise strategies to address them.
+          </li>
+          <li>
+            Architecting/Designing: In this stage, we focus on designing the
+            architecture and user interface of the project. We create detailed
+            blueprints and wireframes that outline the structure and flow of the
+            application. Our design team works to ensure the UI is intuitive,
+            aesthetically pleasing, and aligns with the client&apos;s brand
+            identity. We also plan the technical architecture to ensure the
+            solution is scalable, secure, and efficient.
+          </li>
+          <li>
+            Development: This is where the actual coding and development take
+            place. Our skilled development team uses the latest technologies and
+            best practices to build the application. We follow an iterative
+            development process, allowing us to incorporate client feedback and
+            make adjustments along the way. Regular updates and demos are
+            provided to keep the client informed of the progress.
+          </li>
+          <li>
+            Delivery: Once the development is complete, we conduct thorough
+            testing to ensure the application is free of bugs and performs as
+            expected. After successful testing, we deliver the final product to
+            the client. But our job doesn’t end there. We also provide support
+            and maintenance to ensure the application continues to run smoothly
+            and meets the client&apos;s evolving needs.
+          </li>
+        </ol>
+      </p>
     </div>
   );
 };
