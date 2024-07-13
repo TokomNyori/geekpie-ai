@@ -61,7 +61,7 @@ export async function meetingDetector(msgs: Message[]) {
     const aiLastMessage = ai.length > 0 ? ai[ai.length - 1].toLowerCase() : '';
 
     const keywordFound = human.some(content => meetingRegex.test(content.toLowerCase()));
-    const confirmAI = aiLastMessage.includes("meeting") && aiLastMessage.includes("^");
+    const confirmAI = aiLastMessage.includes("^^");
 
     // console.log(aiLastMessage)
     if (confirmAI) {

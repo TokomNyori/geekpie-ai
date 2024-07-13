@@ -216,6 +216,9 @@ const GeekPieBotTrainingData = () => {
           accurate pricing estimate, please contact us by phone or email to
           arrange a meeting.
         </p>
+        For any other pricing-related queries, please contact us. Our pricing is
+        flexible and tailored to meet your specific requirements and project
+        complexity. Rest assured, we offer competitive and fair pricing.
       </div>
 
       {/* This div contains information about the process for transforming client concepts into reality */}
@@ -293,8 +296,9 @@ const GeekPieBotTrainingData = () => {
           3. How many pages does GeekPie AI&apos;s landing website have?
           <br />
           GeekPie AI&apos;s landing page (https://geekpieai.vercel.app/) is a
-          single-page website developed using the Next.js framework. All
-          information is contained on this single page.
+          single-page website developed using the Next.js framework. All the
+          information is contained on this single page; it does not have
+          additional pages
         </p>
         <p>
           4. Does GeekPie AI&apos;s landing page have a signup or account
