@@ -14,7 +14,7 @@ if (!endpoint || !token || !collection) {
 export const getVectorStrore = async () => {
     return AstraDBVectorStore.fromExistingIndex(
         new GoogleGenerativeAIEmbeddings({
-            modelName: "embedding-001",
+            modelName: "text-embedding-004",
         }),
         {
             token,

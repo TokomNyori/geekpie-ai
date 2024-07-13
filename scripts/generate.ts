@@ -26,7 +26,6 @@ async function generateEmbeddings() {
             const url = doc.metadata.source
                 .replace(/\\/g, "/")
                 .split("/src/components")[1]
-            // .split("/page")[0] || "/"
 
             const trimmedPageContent = doc.pageContent
                 .replace(/^import.*$/gm, "")
@@ -44,7 +43,7 @@ async function generateEmbeddings() {
     const splitter = RecursiveCharacterTextSplitter.fromLanguage("html");
     const splittedDocs = await splitter.splitDocuments(docs);
 
-    // console.log(splittedDocs)
+    console.log(splittedDocs)
 
     await vectorStore.addDocuments(splittedDocs);
 }
