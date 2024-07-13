@@ -32,12 +32,10 @@ export async function POST(req: NextRequest) {
             model: "gemini-1.5-pro",
             streaming: true,
             callbacks: [handlers],
-            verbose: true,
         })
 
         const rephrasingModel = new ChatGoogleGenerativeAI({
             model: "gemini-1.5-pro",
-            verbose: true,
         })
 
         const retriever = (await getVectorStrore()).asRetriever();

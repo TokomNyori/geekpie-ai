@@ -10,7 +10,7 @@ if (!endpoint || !token || !collection) {
     throw new Error("Please set AstraDB ENVs.")
 }
 
-//embedding-001
+//embedding-001, text-embedding-004
 export const getVectorStrore = async () => {
     return AstraDBVectorStore.fromExistingIndex(
         new GoogleGenerativeAIEmbeddings({
