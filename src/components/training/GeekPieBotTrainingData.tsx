@@ -189,7 +189,6 @@ const GeekPieBotTrainingData = () => {
         <h1>Pricing</h1>
         <p>
           Pricing for the customer service chatbots:
-          <br />
           Pricing depends on the level of customization, the extent of model
           training, and the number of large language models (LLMs) used. The
           base plan starts at 15,000 INR. Please contact us by phone or email to
@@ -197,7 +196,6 @@ const GeekPieBotTrainingData = () => {
         </p>
         <p>
           Pricing for Chat UI design Only:
-          <br />
           The pricing for Chat UI design varies based on the level of
           customization required. This includes factors such as the complexity
           of the design, the number of unique elements, animations, and the
@@ -207,7 +205,6 @@ const GeekPieBotTrainingData = () => {
         </p>
         <p>
           Pricing for the Microservices:
-          <br />
           The pricing for microservices depends on several factors, including
           the type of microservices needed, their complexity, and the scope of
           integration with your existing systems. Microservices can range from
@@ -281,37 +278,31 @@ const GeekPieBotTrainingData = () => {
         <h1>FAQs</h1>
         <p>
           1. What is the website link of GeekPie AI?
-          <br />
           The official website link of GeekPie AI is
           https://geekpieai.vercel.app/.
         </p>
         <p>
           2. What is the website link of GeekPie Software Company?
-          <br />
           The website link of GeekPie Software Company is
           https://www.geekpie.in/. This website is currently under
           redevelopment, so the link may not be functional at the moment.
         </p>
         <p>
           3. How many pages does GeekPie AI&apos;s landing website have?
-          <br />
           GeekPie AI&apos;s landing page (https://geekpieai.vercel.app/) is a
           single-page website developed using the Next.js framework. All the
           information is contained on this single page; it does not have
-          additional pages
+          additional pages.
         </p>
         <p>
           4. Does GeekPie AI&apos;s landing page have a signup or account
           feature?
-          <br />
           No, GeekPie AI&apos;s landing page does not have any account creation
           feature as there is no need for signup or sign-in functionalities.
         </p>
-
         <p>
           5. Does GeekPie Software Company&apos;s website have a signup or
           sign-in feature?
-          <br />
           Yes, it has an account creation feature for freelancers who want to
           join and work with GeekPie Software Agency. However, the website is
           currently under redevelopment, so it may not be functional at this
@@ -319,7 +310,6 @@ const GeekPieBotTrainingData = () => {
         </p>
         <p>
           6. Can you help me sign up to GeekPie Software Company?
-          <br />
           No, I primarily handle queries related to GeekPie AI. Additionally, I
           do not have the capability to assist with user signup or sign-in
           processes.
