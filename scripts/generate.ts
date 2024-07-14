@@ -26,7 +26,6 @@ async function generateEmbeddings() {
             const url = doc.metadata.source
                 .replace(/\\/g, "/")
                 .split("/src/components")[1]
-                .split(".")[0]
 
             const trimmedPageContent = doc.pageContent
                 .replace(/^import.*$/gm, "")
