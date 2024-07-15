@@ -10,6 +10,7 @@ import Orb from "@/assets/jsons/orb1.json";
 import TypingAni from "@/assets/jsons/typing.json";
 import MeetingAni from "@/assets/jsons/meetingLoader1.json";
 import ConfettiAni from "@/assets/jsons/Confetti1.json";
+import ErrorAni from "@/assets/jsons/error1.json";
 import { IoCogOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircleArrowUp } from "react-icons/fa6";
@@ -361,15 +362,10 @@ Date and Time: ${meetingDetails.meetingTime}`);
             )}
 
             {error && (
-              <ChatMessages
-                message={{
-                  id: "error",
-                  role: "assistant",
-                  content: "Something went wrong. Please try again!",
-                }}
-                showMeetingBtn={showMeetingBtn}
-                meetingDetailsSubmitted={meetingDetailsSubmitted}
-                setLoadMeetingModal={setLoadMeetingModal}
+              <ChatBotGeneralState
+                textMessage="Something went wrong. Please try again!"
+                lottieJsonOrb={Orb}
+                lottieJsonOptional={ErrorAni}
               />
             )}
 
