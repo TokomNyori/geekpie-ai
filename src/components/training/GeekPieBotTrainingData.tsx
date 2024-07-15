@@ -250,7 +250,7 @@ const GeekPieBotTrainingData = () => {
 
       <div>
         <h1>FAQs</h1>
-        1. What is the website link of GeekPie AI? The official website link of
+        1. What is the website link of GeekPie AI? The website link of
         GeekPie AI is https://geekpieai.vercel.app/
         <br />
         2. What is the website link of GeekPie Software Company? The website
