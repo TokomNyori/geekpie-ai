@@ -76,21 +76,10 @@ const GeekPieBotTrainingData = () => {
       <div>
         <h1>Contact Us</h1>
         <ul>
-          <li>
-            Whatsapp: <a href="https://wa.me/918837428457">+918837428457</a>
-          </li>
-          <li>
-            Phone: <a href="tel:+918837428457">+918837428457</a>
-          </li>
-          <li>
-            Email: <a href="mailto:geekpie@geekpie.in">geekpie@geekpie.in</a>
-          </li>
-          <li>
-            Instagram:{" "}
-            <a href="https://instagram.com/geekpie.in">
-              https://instagram.com/geekpie.in
-            </a>
-          </li>
+          <li>Whatsapp: +918837428457</li>
+          <li>Phone: +918837428457</li>
+          <li>Email: geekpie@geekpie.in</li>
+          <li>Instagram: https://instagram.com/geekpie.in</li>
         </ul>
       </div>
 
@@ -102,10 +91,7 @@ const GeekPieBotTrainingData = () => {
         </p>
         <p>
           Google map link of the GeekPie Software Company&apos;s office
-          location:{" "}
-          <a href="https://maps.app.goo.gl/BYuj7ReFQTfNDzse6">
-            https://maps.app.goo.gl/BYuj7ReFQTfNDzse6
-          </a>
+          location: https://maps.app.goo.gl/BYuj7ReFQTfNDzse6
         </p>
       </div>
 
@@ -186,31 +172,30 @@ const GeekPieBotTrainingData = () => {
       </div>
 
       <div>
-        <h1>Pricing Details</h1>
+        <h1>Pricing</h1>
         <p>
-          Pricing for the customer service chatbots: Pricing depends on the
+          1. Pricing for the customer service chatbots: Pricing depends on the
           level of customization, the extent of model training, and the number
           of large language models (LLMs) used. The base plan starts at 15,000
           INR. Please contact us by phone or email to arrange a meeting to
           discuss the details.
           <br />
-          Pricing for Chat UI design Only: The pricing for Chat UI design varies
-          based on the level of customization required. This includes factors
-          such as the complexity of the design, the number of unique elements,
-          animations, and the overall user experience desired. To get an
-          accurate quote, please contact us by phone or email to arrange a
+          2. Pricing for Chat UI design Only: The pricing for Chat UI design
+          varies based on the level of customization required. This includes
+          factors such as the complexity of the design, the number of unique
+          elements, animations, and the overall user experience desired. To get
+          an accurate quote, please contact us by phone or email to arrange a
           meeting where we can discuss your requirements in detail and provide a
           tailored pricing plan.
           <br />
-          Pricing for the Microservices: The pricing for microservices depends
-          on several factors, including the type of microservices needed, their
-          complexity, and the scope of integration with your existing systems.
-          Microservices can range from simple APIs to more complex, data-driven
-          services that require extensive development and testing. For a
-          detailed discussion and an accurate pricing estimate, please contact
-          us by phone or email to arrange a meeting.
-        </p>
-        <p>
+          3. Pricing for the Microservices: The pricing for microservices
+          depends on several factors, including the type of microservices
+          needed, their complexity, and the scope of integration with your
+          existing systems. Microservices can range from simple APIs to more
+          complex, data-driven services that require extensive development and
+          testing. For a detailed discussion and an accurate pricing estimate,
+          please contact us by phone or email to arrange a meeting.
+          <br />
           For any other pricing-related queries, please contact us. Our pricing
           is flexible and tailored to meet your specific requirements and
           project complexity. Rest assured, we offer competitive and fair
@@ -227,20 +212,19 @@ const GeekPieBotTrainingData = () => {
           We have a comprehensive five-stage process, and we maintain constant
           communication with our clients throughout each stage to ensure their
           vision is brought to life. Here’s how we do it:
-        </p>
-        <p>
-          Discussion: This stage involves a thorough discussion with the client
-          about their idea. We take the time to understand their vision, goals,
-          and requirements. This helps us align our approach with their
+          <br />
+          1. Discussion: This stage involves a thorough discussion with the
+          client about their idea. We take the time to understand their vision,
+          goals, and requirements. This helps us align our approach with their
           expectations and provides a solid foundation for the project.
           <br />
-          Breaking the Idea into Atomic Parts: We break down the idea into
+          2. Breaking the Idea into Atomic Parts: We break down the idea into
           smaller, manageable components. This helps us understand the
           intricacies of the project and plan the implementation effectively. By
           dissecting the idea, we can identify potential challenges early and
           devise strategies to address them.
           <br />
-          Architecting/Designing: In this stage, we focus on designing the
+          3. Architecting/Designing: In this stage, we focus on designing the
           architecture and user interface of the project. We create detailed
           blueprints and wireframes that outline the structure and flow of the
           application. Our design team works to ensure the UI is intuitive,
@@ -248,14 +232,14 @@ const GeekPieBotTrainingData = () => {
           identity. We also plan the technical architecture to ensure the
           solution is scalable, secure, and efficient.
           <br />
-          Development: This is where the actual coding and development take
+          4. Development: This is where the actual coding and development take
           place. Our skilled development team uses the latest technologies and
           best practices to build the application. We follow an iterative
           development process, allowing us to incorporate client feedback and
           make adjustments along the way. Regular updates and demos are provided
           to keep the client informed of the progress.
           <br />
-          Delivery: Once the development is complete, we conduct thorough
+          5. Delivery: Once the development is complete, we conduct thorough
           testing to ensure the application is free of bugs and performs as
           expected. After successful testing, we deliver the final product to
           the client. But our job doesn’t end there. We also provide support and
@@ -267,15 +251,10 @@ const GeekPieBotTrainingData = () => {
       <div>
         <h1>FAQs</h1>
         1. What is the website link of GeekPie AI? The official website link of
-        GeekPie AI is{" "}
-        <a href="https://geekpieai.vercel.app/">
-          https://geekpieai.vercel.app/
-        </a>
-        .
+        GeekPie AI is https://geekpieai.vercel.app/
         <br />
         2. What is the website link of GeekPie Software Company? The website
-        link of GeekPie Software Company is{" "}
-        <a href="https://www.geekpie.in/">https://www.geekpie.in/</a>. This
+        link of GeekPie Software Company is https://www.geekpie.in/. This
         website is currently under redevelopment, so the link may not be
         functional at the moment.
         <br />
