@@ -305,8 +305,8 @@ Date and Time: ${meetingDetails.meetingTime}`);
 
   const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
-  console.log("Meeting Details:");
-  console.log(showConfetti);
+  // console.log("Meeting Details:");
+  // console.log(showConfetti);
 
   return (
     <div

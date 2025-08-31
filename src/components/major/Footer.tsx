@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-center gap-4 border-t border-slate-600 px-8 py-10 pb-20">
+    <footer className="flex flex-col items-center justify-center gap-4 border-t border-slate-600 px-8 py-10 pb-32">
       <Link href={"/"} className="flex items-center justify-start gap-3">
         <LogoMark className="w-[2.35rem]" />
         <span className="text-3xl">
@@ -43,7 +43,7 @@ const Footer = () => {
           </li>
           <li>
             <Link
-              href={`mailto:geekpie@geekpie.in`}
+              href={`mailto:contact@xvariate.com`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex min-h-11 cursor-pointer items-center text-gray-400 hover:text-gray-100 hover:brightness-125"
@@ -62,6 +62,20 @@ const Footer = () => {
           </li>
         </ul>
       </nav>
+      <p className="text-sm text-neutral-400">
+        A Side Project by Xvariate Software Company
+      </p>
+      <p className="text-sm text-neutral-400">
+        Developed and maintained by &nbsp;
+        <Link
+          href="https://xvariate.com"
+          className="text-neutral-50 transition-all duration-300 ease-in-out hover:underline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Xvariate
+        </Link>
+      </p>
     </footer>
   );
 };

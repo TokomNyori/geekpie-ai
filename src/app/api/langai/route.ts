@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAIStream, LangChainStream, StreamingTextResponse } from "ai";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { ChatPromptTemplate, PromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts"
+import { LangChainStream, StreamingTextResponse } from "ai";
+import { ChatOpenAI, } from "@langchain/openai";
+import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts"
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents"
 import { createRetrievalChain } from "langchain/chains/retrieval"
 import { getVectorStrore } from '@/libs/astradb';
@@ -28,14 +27,16 @@ export async function POST(req: NextRequest) {
 
         const { stream, handlers } = LangChainStream();
 
-        const model = new ChatGoogleGenerativeAI({
-            model: "gemini-1.5-flash",
+        const model = new ChatOpenAI({
+            modelName: "gpt-5-nano-2025-08-07",
+            openAIApiKey: process.env.OPENAI_API_KEY,
             streaming: true,
             callbacks: [handlers],
         })
 
-        const rephrasingModel = new ChatGoogleGenerativeAI({
-            model: "gemini-1.5-flash",
+        const rephrasingModel = new ChatOpenAI({
+            openAIApiKey: process.env.OPENAI_API_KEY,
+            modelName: "gpt-5-nano-2025-08-07",
         })
 
         const retriever = (await getVectorStrore()).asRetriever();
