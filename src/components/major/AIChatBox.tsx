@@ -159,7 +159,8 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
 
-    if (!isLoading) {
+    // Don't detect meetings if already submitted or if still loading
+    if (!isLoading && !meetingDetailsSubmitted) {
       handleMeetingDetection();
     }
 
@@ -180,7 +181,7 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
         clearTimeout(timeoutId);
       }
     };
-  }, [messages, isLoading]);
+  }, [messages, isLoading, meetingDetailsSubmitted]);
 
   // UseEffect to send mail
   useEffect(() => {
