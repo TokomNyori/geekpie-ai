@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             user: geekpieEmail,
             pass: pass,
         }
-    })
+    });
 
     const { mailType, subject, firstName, lastName, email, mobile, service, customerName, meetingMode, meetingDateTime } = await req.json();
     let mailOptions = {}
