@@ -96,6 +96,8 @@ export async function POST(req: NextRequest) {
         // console.log('NOODEEEMAILER-----------')
         // console.log(mail)
 
+        console.log('Email sent successfully::::::::', mail);
+
         return NextResponse.json(
             {
                 success: true,

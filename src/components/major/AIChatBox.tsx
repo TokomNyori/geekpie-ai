@@ -67,6 +67,9 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [loadMeetingModal, setLoadMeetingModal] = useState<boolean>(false);
   const [showMeetingBtn, setShowMeetingBtn] = useState<boolean>(false);
+  const [isLastMessageByUser, setIsLastMessageByUser] = useState<boolean>(
+    messages[messages.length - 1]?.role === "user",
+  );
   const [meetingDetailsSubmitted, setMeetingDetailsSubmitted] =
     useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
@@ -234,7 +237,9 @@ Date and Time: ${meetingDetails.meetingTime}`);
     const lastMessage = messages[messages.length - 1];
     const isLastMessageByAI = lastMessage?.role === "assistant";
 
-    if (isSendingMail && isEmailSent && isLastMessageByAI && !isLoading) {
+    console.log("is last message by AI??", lastMessage?.role);
+
+    if (isSendingMail && isEmailSent && !isLoading) {
       setIsSendingMail(false);
       toast.success("Meeting Confirmed! Confirmation Email Sent", {
         duration: 5000,
@@ -255,6 +260,10 @@ Date and Time: ${meetingDetails.meetingTime}`);
       }
     };
   }, [isSendingMail, messages, isEmailSent, showConfetti, isLoading]);
+
+  useEffect(() => {
+    setIsLastMessageByUser(messages[messages.length - 1]?.role === "user");
+  }, [messages]);
 
   const container = useRef(null);
   gsap.registerPlugin(useGSAP);
@@ -303,7 +312,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
     setIsClosing(true);
   }
 
-  const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
+  // const isLastMessageByUser = messages[messages.length - 1]?.role === "user";
 
   // console.log("Meeting Details:");
   // console.log(showConfetti);

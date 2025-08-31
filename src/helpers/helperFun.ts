@@ -11,7 +11,7 @@ export async function mailSender({ method, headers, body }: MailSenderParams) {
 
     if (!res.ok) {
         const errorData = await res.json();
-        // console.log(errorData)
+        console.log("Error occurred while sending email:", errorData)
         throw new Error(errorData.message)
     }
 
