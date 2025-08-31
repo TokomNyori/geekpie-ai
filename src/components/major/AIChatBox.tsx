@@ -371,7 +371,7 @@ Date and Time: ${meetingDetails.meetingTime}`);
               />
             )}
 
-            {error && !isEmailSent && (
+            {error && !meetingDetailsSubmitted && (
               <ChatBotGeneralState
                 textMessage="Something went wrong. Please try again!"
                 lottieJsonOrb={Orb}
